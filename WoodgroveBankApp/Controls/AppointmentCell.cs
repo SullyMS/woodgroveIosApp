@@ -1,7 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
-using CalendarServices.Models;
+using CalServices.Models;
 
 namespace WoodgroveBankApp
 {
@@ -14,12 +14,12 @@ namespace WoodgroveBankApp
         #region Methods
         public void Update(Appointment Appointment)
         {
-            TitleLabel.Text = Appointment.Location.Name;
-            AddressLabel.Text = Appointment.Location.Address;
+            TitleLabel.Text = Appointment.BranchNumber;
+            AddressLabel.Text = "Address";
             DateLabel.Text = $"{Appointment.StartDate: MMMM d}";
             TimeLabel.Text = $"{Appointment.StartDate: h:mm} - {Appointment.EndDate: h:mm tt}";
-            ReasonLabel.Text = Appointment.Reason.ToString();
-            StatusLabel.Text = Appointment.Status.ToString();
+            ReasonLabel.Text = Appointment.AppointmentType.DisplayLabel;
+            StatusLabel.Text = Appointment.Status.DisplayLabel;
             //image
             IconImage.Image = UIImage.FromBundle("WoodIcon");
         }

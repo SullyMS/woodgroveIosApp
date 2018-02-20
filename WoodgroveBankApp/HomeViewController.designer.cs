@@ -11,11 +11,8 @@ using UIKit;
 
 namespace WoodgroveBankApp
 {
-    [Register ("HomePageViewController")]
-    partial class HomePageViewController
+    [Register ("HomeViewController")]
+    partial class HomeViewController
     {
-        void ReleaseDesignerOutlets ()
-        {
-        }
     }
 }

@@ -21,6 +21,10 @@ namespace WoodgroveBankApp
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
+            //change the appearance of the title bar globally
+            UINavigationBar.Appearance.BarTintColor = Common.ScreenColors.TitleBarBackground;
+            UINavigationBar.Appearance.TintColor = Common.ScreenColors.TitleBarFontColor;
+
             return true;
         }
 

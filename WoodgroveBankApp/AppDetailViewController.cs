@@ -1,7 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
-using CalendarServices.Models;
+using CalServices.Models;
 
 namespace WoodgroveBankApp
 {
@@ -19,7 +19,7 @@ namespace WoodgroveBankApp
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            TitleLabel.Text = Appointment.Location.Name;
+            TitleLabel.Text = Appointment.BranchId;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using UIKit;
-using CalendarServices.Models;
-using CalendarServices.Datasources;
+using CalServices.Models;
+using CalServices.DataSources;
 using CoreGraphics;
 
 namespace WoodgroveBankApp.Datasources

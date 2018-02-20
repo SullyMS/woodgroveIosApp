@@ -107,6 +107,14 @@
     <ImageAsset Include="Assets.xcassets\WoodIcon.imageset\woodgrove_icon32.png" />
     <ImageAsset Include="Assets.xcassets\WoodIcon.imageset\woodgrove_icon32_2X.png" />
     <ImageAsset Include="Assets.xcassets\WoodIcon.imageset\woodgrove_icon32_3X.png" />
+    <ImageAsset Include="Assets.xcassets\AccountsIcon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AccountsIcon.imageset\accounts_icon.png" />
+    <ImageAsset Include="Assets.xcassets\AccountsIcon.imageset\accounts_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\AccountsIcon.imageset\accounts_icon_3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\appointment_icon.png" />
+    <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\appointment_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\appointment_icon_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -118,6 +126,9 @@
     <Folder Include="Assets.xcassets\AboutIcon.imageset\" />
     <Folder Include="Controls\" />
     <Folder Include="Assets.xcassets\WoodIcon.imageset\" />
+    <Folder Include="Common\" />
+    <Folder Include="Assets.xcassets\AccountsIcon.imageset\" />
+    <Folder Include="Assets.xcassets\AppointmentsIcon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -143,10 +154,6 @@
     <Compile Include="NewAppNavController.designer.cs">
       <DependentUpon>NewAppNavController.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomePageViewController.cs" />
-    <Compile Include="HomePageViewController.designer.cs">
-      <DependentUpon>HomePageViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="AccountTableViewController.cs" />
     <Compile Include="AccountTableViewController.designer.cs">
       <DependentUpon>AccountTableViewController.cs</DependentUpon>
@@ -163,7 +170,17 @@
     <Compile Include="Controls\AppointmentCell.designer.cs">
       <DependentUpon>AppointmentCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomeViewController.cs" />
+    <Compile Include="HomeViewController.designer.cs">
+      <DependentUpon>HomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ScreenColors.cs" />
   </ItemGroup>
-  <Import Project="..\CalendarServices.Shared\CalendarServices.Shared.projitems" Label="Shared" Condition="Exists('..\CalendarServices.Shared\CalendarServices.Shared.projitems')" />
+  <ItemGroup>
+    <ProjectReference Include="..\CalServices\CalServices.csproj">
+      <Project>{CC076862-4D38-412D-8789-5DAB0787957B}</Project>
+      <Name>CalServices</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -1,9 +1,9 @@
 using Foundation;
 using System;
 using UIKit;
-using CalendarServices.Datasources;
+using CalServices.DataSources;
 using System.Threading.Tasks;
-using CalendarServices.Models;
+using CalServices.Models;
 
 namespace WoodgroveBankApp
 {
@@ -15,23 +15,52 @@ namespace WoodgroveBankApp
 
         public AppointmentsTableViewController(IntPtr handle) : base(handle)
         {
-            _datasource = new AppointmentsDataSource();
-            _datasource.Load();
+            _datasource = new AppointmentsDataSource("123456");
+
         }
 
         #region Methods
+
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            Task.Factory.StartNew( () => LoadDataAsync());
+        }
+
+        public async Task LoadDataAsync()
+        {
+            await _datasource.Load();
+            InvokeOnMainThread(() =>
+            {
+                TableView.ReloadData();
+            });
+        }
+
+
         public override nint RowsInSection(UITableView tableView, nint section)
         {
-            return _datasource.Appointments.Count;
+            if (_datasource.Status == DataSourceStatus.Loaded)
+            {
+                return _datasource.Appointments.Count;
+            }
+            return 0;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            Appointment appointment = _datasource.Appointments[indexPath.Row];
             AppointmentCell cell = (AppointmentCell)tableView.DequeueReusableCell(CELL_ID, indexPath);
-
-            cell.Update(appointment);
-                
+            if (_datasource.Status == DataSourceStatus.Loaded)
+            {
+                Appointment appointment = _datasource.Appointments[indexPath.Row];
+                cell.Update(appointment);
+            }
             return cell;
         }
 
