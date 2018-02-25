@@ -55,6 +55,10 @@ namespace CalServices.Models
         [JsonProperty("BranchNumnber")]
         public string BranchNumber { get; set; }
         #endregion
+
+        #region Constants
+        public const int MOBILE_APP_SOURCE = 717660005;
+        #endregion
     }
 
     public class EntityStatus

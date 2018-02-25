@@ -39,6 +39,10 @@
     <Compile Include="DataSources\DataServiceResponse.cs" />
     <Compile Include="DataSources\ClientDataSource.cs" />
     <Compile Include="DataSources\ApptReasonDataSource.cs" />
+    <Compile Include="DataSources\ScheduleDataSource.cs" />
+    <Compile Include="Models\ScheduleResults.cs" />
+    <Compile Include="Models\ConfirmationRequest.cs" />
+    <Compile Include="Models\ConfirmationResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

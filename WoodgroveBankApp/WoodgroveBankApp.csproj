@@ -175,12 +175,28 @@
       <DependentUpon>HomeViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\ScreenColors.cs" />
+    <Compile Include="Common\ApplicationData.cs" />
+    <Compile Include="AppReasonViewController.cs" />
+    <Compile Include="SetLocationViewController.cs" />
+    <Compile Include="SetLocationViewController.designer.cs" />
+    <Compile Include="AppReasonViewController.designer.cs" />
+    <Compile Include="SelectTimeViewController.cs" />
+    <Compile Include="SelectTimeViewController.designer.cs">
+      <DependentUpon>SelectTimeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmAppViewController.cs" />
+    <Compile Include="ConfirmAppViewController.designer.cs">
+      <DependentUpon>ConfirmAppViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalServices\CalServices.csproj">
       <Project>{CC076862-4D38-412D-8789-5DAB0787957B}</Project>
       <Name>CalServices</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Settings.bundle\Root.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

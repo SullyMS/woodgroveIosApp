@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using CalServices.Models;
 using CalServices.DataSources;
+using WoodgroveBankApp.Common;
 
 namespace WoodgroveBankApp
 {
@@ -17,6 +18,16 @@ namespace WoodgroveBankApp
         #region Properties
         private List<EntityStatus> AppointmentReasons { get; set; }
         #endregion
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+            //set the appointment reason
+            AppReasonViewController controller = segue.SourceViewController as AppReasonViewController;
+            EntityStatus reason = controller.AppointmentReasons[controller.TableView.IndexPathForSelectedRow.Row];
+            ApplicationData.Current.NewAppointment.AppointmentType = reason;
+            //TO DO: SET THE SUB TYPE
+        }
 
         public override void ViewDidLoad()
         {
@@ -70,5 +81,7 @@ namespace WoodgroveBankApp
             }
             return cell;
         }
+
+
     }
 }
