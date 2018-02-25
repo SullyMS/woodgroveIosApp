@@ -19,7 +19,8 @@ namespace WoodgroveBankApp
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            TitleLabel.Text = Appointment.BranchId;
+            //TitleLabel.Text = Appointment.BranchId;
+            Title = Appointment.ConfirmationNumber;
         }
     }
 }

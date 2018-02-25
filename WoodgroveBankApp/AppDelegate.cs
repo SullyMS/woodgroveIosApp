@@ -1,5 +1,9 @@
-﻿using Foundation;
+﻿using System.Threading.Tasks;
+using CalServices.DataSources;
+using CalServices.Models;
+using Foundation;
 using UIKit;
+using WoodgroveBankApp.Common;
 
 namespace WoodgroveBankApp
 {
@@ -24,6 +28,18 @@ namespace WoodgroveBankApp
             //change the appearance of the title bar globally
             UINavigationBar.Appearance.BarTintColor = Common.ScreenColors.TitleBarBackground;
             UINavigationBar.Appearance.TintColor = Common.ScreenColors.TitleBarFontColor;
+
+            Task loadClient = Task.Run(async () =>
+            {
+                //load the client
+                ClientDataSource clientds = new ClientDataSource("123456");
+                if (await clientds.Load())
+                {
+                    ApplicationData.Current.Client = clientds.Client;
+                }
+            });
+
+            loadClient.Wait();
 
             return true;
         }

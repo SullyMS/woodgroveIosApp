@@ -37,6 +37,8 @@
     <Compile Include="DataSources\BaseDataSource.cs" />
     <Compile Include="DataSources\BranchDataSource.cs" />
     <Compile Include="DataSources\DataServiceResponse.cs" />
+    <Compile Include="DataSources\ClientDataSource.cs" />
+    <Compile Include="DataSources\ApptReasonDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

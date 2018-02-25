@@ -14,8 +14,16 @@ namespace WoodgroveBankApp
     [Register ("AppointmentsTableViewController")]
     partial class AppointmentsTableViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView ProgressRing { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (ProgressRing != null) {
+                ProgressRing.Dispose ();
+                ProgressRing = null;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace WoodgroveBankApp.Datasources
 
         public BranchViewSource()
         {
-            _datasource = new BranchDataSource();
+            _datasource = new BranchDataSource("100");
         }
 
         public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
@@ -20,7 +20,7 @@ namespace WoodgroveBankApp.Datasources
             UITableViewCell cell = new UITableViewCell(UITableViewCellStyle.Subtitle, null);
             Branch branch = _datasource.Branches[indexPath.Row];
             cell.TextLabel.Text = branch.Name;
-            cell.DetailTextLabel.Text = branch.Address;
+            cell.DetailTextLabel.Text = branch.Street1;
 
 
             return cell;

@@ -16,11 +16,13 @@ namespace CalServices.DataSources
         }
 
         #region AbstractMethods
-        public abstract Task Load();
+        public abstract Task<bool> Load();
 
         #endregion
 
         #region Properties
+        public ErrorType ErrorType { get; private set; }
+        public string ErrorMessage { get; private set; }
         public DataSourceStatus Status
         {
             get => _status;
@@ -29,7 +31,8 @@ namespace CalServices.DataSources
         #endregion
 
         #region Methods
-        protected async Task<DataServiceResponse<T>> GetData<T>(string ServiceUrl){
+        protected async Task<DataServiceResponse<T>> GetData<T>(string ServiceUrl)
+        {
             //send a get method to the end point
             Status = DataSourceStatus.Loading;
             try
@@ -48,24 +51,24 @@ namespace CalServices.DataSources
                     DataServiceResponse<T> response = new DataServiceResponse<T>()
                     {
                         Success = false,
-                        ErrorType = ErrorType.OtherHttp,
-                        ErrorMessage = json,
                         Data = default(T)
                     };
+                    ErrorType = ErrorType.OtherHttp;
+                    ErrorMessage = json;
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        response.ErrorType = ErrorType.NotFound;
+                        ErrorType = ErrorType.NotFound;
                     }
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                     {
-                        response.ErrorType = ErrorType.InternalServerError;
+                        ErrorType = ErrorType.InternalServerError;
                     }
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized ||
                        httpResponse.StatusCode == System.Net.HttpStatusCode.Forbidden)
                     {
-                        response.ErrorType = ErrorType.NotAuthorized;
+                        ErrorType = ErrorType.NotAuthorized;
                     }
-
+                    OnLoadError();
                     return response;
                 }
                 else
@@ -75,28 +78,39 @@ namespace CalServices.DataSources
                     DataServiceResponse<T> response = new DataServiceResponse<T>()
                     {
                         Success = true,
-                        ErrorType = ErrorType.OtherHttp,
-                        ErrorMessage = string.Empty,
-                        Data = (T)Convert.ChangeType(data, typeof(T)) 
+                        Data = (T)Convert.ChangeType(data, typeof(T))
                     };
+                    ErrorType = ErrorType.None;
+                    ErrorMessage = string.Empty;
                     Status = DataSourceStatus.Loaded;
+                    OnLoadComplete();
                     return response;
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 DataServiceResponse<T> response = new DataServiceResponse<T>()
                 {
                     Success = false,
-                    ErrorType = ErrorType.UnExpected,
-                    ErrorMessage = ex.Message,
                     Data = default(T)
                 };
+                ErrorType = ErrorType.UnExpected;
+                ErrorMessage = ex.Message;
                 Status = DataSourceStatus.Error;
+                OnLoadError();
                 return response;
             }
 
         }
+        #endregion
+
+        #region Events
+        public event EventHandler LoadComplete;
+        public event EventHandler LoadError;
+
+        protected void OnLoadComplete() => LoadComplete?.Invoke(this, EventArgs.Empty);
+        protected void OnLoadError() => LoadError?.Invoke(this, EventArgs.Empty);
         #endregion
     }
 

@@ -11,11 +11,19 @@ using UIKit;
 
 namespace WoodgroveBankApp
 {
-    [Register ("AppDetailViewController")]
-    partial class AppDetailViewController
+    [Register ("AppReasonViewController")]
+    partial class AppReasonViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView TableView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (TableView != null) {
+                TableView.Dispose ();
+                TableView = null;
+            }
         }
     }
 }

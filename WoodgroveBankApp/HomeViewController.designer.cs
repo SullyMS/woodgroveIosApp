@@ -14,5 +14,25 @@ namespace WoodgroveBankApp
     [Register ("HomeViewController")]
     partial class HomeViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView ProgressRing { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel WelcomeLabel { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (ProgressRing != null) {
+                ProgressRing.Dispose ();
+                ProgressRing = null;
+            }
+
+            if (WelcomeLabel != null) {
+                WelcomeLabel.Dispose ();
+                WelcomeLabel = null;
+            }
+        }
     }
 }

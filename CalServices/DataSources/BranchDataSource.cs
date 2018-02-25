@@ -4,27 +4,36 @@ using CalServices.Models;
 
 namespace CalServices.DataSources
 {
-    public class BranchDataSource
+    public class BranchDataSource : BaseDataSource
     {
-        public BranchDataSource()
+        public BranchDataSource(string BranchId)
         {
-            Branches = new List<Branch>();
-            Branch b = new Branch()
-            {
-                Name = "Oakville Place",
-                Transit = "100",
-                Address = "123 Main Street Oakville, ON"
-            };
-            Branches.Add(b);
-            b = new Branch()
-            {
-                Name = "Upper Abbey Center",
-                Transit = "200",
-                Address = "1500 Upper Middle Road Oakville, ON"
-            };
-            Branches.Add(b);
+            this.BranchId = BranchId;
         }
 
         public List<Branch> Branches { get; private set; }
+
+        public async override System.Threading.Tasks.Task<bool> Load()
+        {
+            DataServiceResponse<Branch> response = await GetData<Branch>(ServiceUrl);
+            if(response.Success){
+                Branch = response.Data;
+                return true;
+            }
+            return false;
+        }
+
+        #region Properties
+        private string ServiceUrl
+        {
+            get => $"{SERVICE_URL}{BranchId}";
+        }
+        public string BranchId { get; private set;}
+        public Branch Branch { get; private set; }
+        #endregion
+
+        #region Constants
+        private const string SERVICE_URL = "https://xrmdataservices.azurewebsites.net/api/Branch/GetBranchById/";
+        #endregion
     }
 }

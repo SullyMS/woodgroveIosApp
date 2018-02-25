@@ -8,8 +8,6 @@ namespace CalServices.DataSources
         }
 
         #region Properties
-        public ErrorType ErrorType { get; set; }
-        public string ErrorMessage { get; set; }
         public bool Success { get; set; }
         public T Data{ get; set; }
         #endregion
@@ -17,6 +15,7 @@ namespace CalServices.DataSources
 
     public enum ErrorType
     {
+        None,
         NotFound,
         NoNetwork,
         UnExpected,
