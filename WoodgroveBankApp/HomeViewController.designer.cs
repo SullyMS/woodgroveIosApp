@@ -16,6 +16,10 @@ namespace WoodgroveBankApp
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView ClientImage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIActivityIndicatorView ProgressRing { get; set; }
 
         [Outlet]
@@ -24,6 +28,11 @@ namespace WoodgroveBankApp
 
         void ReleaseDesignerOutlets ()
         {
+            if (ClientImage != null) {
+                ClientImage.Dispose ();
+                ClientImage = null;
+            }
+
             if (ProgressRing != null) {
                 ProgressRing.Dispose ();
                 ProgressRing = null;

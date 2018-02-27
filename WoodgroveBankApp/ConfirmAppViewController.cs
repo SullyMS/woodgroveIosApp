@@ -10,16 +10,19 @@ namespace WoodgroveBankApp
 {
     public partial class ConfirmAppViewController : UIViewController
     {
-        
 
-        public ConfirmAppViewController (IntPtr handle) : base (handle)
+        #region Constructor
+        public ConfirmAppViewController(IntPtr handle) : base(handle)
         {
         }
+        #endregion
+
+        #region Overrides
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            if(ApplicationData.Current.NewAppointment != null)
+            if (ApplicationData.Current.NewAppointment != null)
             {
                 Appointment a = ApplicationData.Current.NewAppointment;
                 DateLabel.Text = $"{a.StartDate:MMM dd, yyyy}";
@@ -29,11 +32,13 @@ namespace WoodgroveBankApp
                 Branch b = ApplicationData.Current.HomeBranch;
                 BranchLabel.Text = b.Name;
                 Address1Label.Text = b.Street1;
-                Address2Label.Text = $"{b.City}, {b.Province.DisplayLabel} {b.PostalCode}";
+                Address2Label.Text = $"{b.City}, {b.Province} {b.PostalCode}";
                 PhoneLabel.Text = b.PhoneNumber;
             }
         }
+        #endregion
 
+        #region Methods
         partial void ConfirmButton_TouchUpInside(UIButton sender)
         {
             StartConfirmation();
@@ -43,9 +48,13 @@ namespace WoodgroveBankApp
         {
             CancelButton.Enabled = false;
             ConfirmButton.Enabled = false;
-            ProgressRing.Hidden = false;
-            ProgressRing.StartAnimating();
-            Task.Run(async () => 
+            //ProgressRing.Hidden = false;
+            //ProgressRing.StartAnimating();
+            //open a progress alert
+            ProgressAlert = UIAlertController.Create("Confirm Appointment", "Confirming appointment please wait...", UIAlertControllerStyle.Alert);
+            PresentViewController(ProgressAlert, true, null);
+
+            Task.Run(async () =>
             {
                 ConfirmationResponse response = await ConfirmAppointmentAsync();
                 if (response == null)
@@ -70,8 +79,10 @@ namespace WoodgroveBankApp
 
         private void ShowSuccess(ConfirmationResponse Response)
         {
+            
             InvokeOnMainThread(() =>
             {
+                ProgressAlert.DismissViewController(true, null);
                 var alert = UIAlertController.Create("Appointment Confirmed", $"Your appointment is confirmed. Your confirmation number is: {Response.ConfirmationNumber}", UIAlertControllerStyle.Alert);
 
                 alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, OnConfirmComplete));
@@ -93,9 +104,12 @@ namespace WoodgroveBankApp
 
         private void ShowError(ConfirmationResponse Response)
         {
-            InvokeOnMainThread(() => {
+            
+            InvokeOnMainThread(() =>
+            {
+                ProgressAlert.DismissViewController(true, null);
                 var alert = UIAlertController.Create("Schedule Error", $"Unable to confirm appointment: {Response?.ErrorMessage}", UIAlertControllerStyle.Alert);
-                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default,null));
+                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                 PresentViewController(alert, true, null);
             });
         }
@@ -112,7 +126,7 @@ namespace WoodgroveBankApp
                 AdvisorEmailAddress = a.AdvisorEmail,
                 AppointmentLanguage = a.AppointmentLanguage,
                 BranchNumber = a.BranchNumber,
-                ClientNumber = ApplicationData.Current.Client.ClientNumber,
+                ClientNumber = ApplicationData.Current.Client.CustomerNumber,
                 SendEmailConfirmation = true,
                 StartTimeUtc = a.StartDate.ToUniversalTime().ToString("o"),
                 EndTimeUtc = a.EndDate.ToUniversalTime().ToString("o"),
@@ -125,5 +139,10 @@ namespace WoodgroveBankApp
             ConfirmationResponse response = await ds.ConfirmAppointmentAsync(request);
             return response;
         }
+        #endregion
+
+        #region Properties
+        private UIAlertController ProgressAlert { get; set; }
+        #endregion
     }
 }

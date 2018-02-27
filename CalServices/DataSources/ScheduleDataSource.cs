@@ -64,6 +64,7 @@ namespace CalServices.DataSources
         #region Constants
         private const string SERVICE_URL = "https://xrmdataservices.azurewebsites.net/api/ScheduleEngine/GetBranchSchedule?BranchId={0}&AppointmentType={1}&AppointmentReason={2}&StartDate={3}&EndDate={4}&ClientLanguage={5}&UILanguageCode=1033&ListOnlyAvailable=true";
         private const string CONF_URL = "https://xrmdataservices.azurewebsites.net/api/ScheduleEngine/ConfirmAppointment";
+        private const string CANCEL_URL = "";
         #endregion
     }
 }

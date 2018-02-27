@@ -43,14 +43,42 @@
     <Compile Include="Models\ScheduleResults.cs" />
     <Compile Include="Models\ConfirmationRequest.cs" />
     <Compile Include="Models\ConfirmationResponse.cs" />
+    <Compile Include="Models\CancelAppointmentRequest.cs" />
+    <Compile Include="Utils\KeyVault.cs" />
+    <Compile Include="Dynamics\Base\IServiceErrorResponse.cs" />
+    <Compile Include="Dynamics\Base\BaseD365ResponseData.cs" />
+    <Compile Include="Dynamics\Base\BaseD365Service.cs" />
+    <Compile Include="Dynamics\Converters\ActivityPartyConverter.cs" />
+    <Compile Include="Dynamics\Converters\JsonLookUpFieldConverter.cs" />
+    <Compile Include="Dynamics\Models\BaseEntity.cs" />
+    <Compile Include="Dynamics\Models\D365ServiceResponse.cs" />
+    <Compile Include="Dynamics\Models\RelatedEntity.cs" />
+    <Compile Include="Dynamics\Messages\CreateServiceResponse.cs" />
+    <Compile Include="Dynamics\Messages\WhoAmIResponse.cs" />
+    <Compile Include="Dynamics\Services\D365CrudService.cs" />
+    <Compile Include="Models\DynamicsSettings.cs" />
+    <Compile Include="Utils\ImageConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="DataSources\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Dynamics\" />
+    <Folder Include="Dynamics\Base\" />
+    <Folder Include="Dynamics\Converters\" />
+    <Folder Include="Dynamics\Messages\" />
+    <Folder Include="Dynamics\Services\" />
+    <Folder Include="Dynamics\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.19.1\lib\netstandard1.1\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.19.1\lib\netstandard1.1\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

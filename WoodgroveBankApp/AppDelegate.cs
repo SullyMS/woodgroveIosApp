@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CalServices.DataSources;
 using CalServices.Models;
 using Foundation;
 using UIKit;
 using WoodgroveBankApp.Common;
+using System.Linq;
 
 namespace WoodgroveBankApp
 {
@@ -28,11 +30,13 @@ namespace WoodgroveBankApp
             //change the appearance of the title bar globally
             UINavigationBar.Appearance.BarTintColor = Common.ScreenColors.TitleBarBackground;
             UINavigationBar.Appearance.TintColor = Common.ScreenColors.TitleBarFontColor;
+            //load the application settings
+            CalServices.Utils.KeyVault.Tokens.DynamicsSettings = ApplicationSettings.Current.DynamicsSettings;
 
             Task loadClient = Task.Run(async () =>
             {
                 //load the client
-                ClientDataSource clientds = new ClientDataSource("123456");
+                ClientDataSource clientds = new ClientDataSource(ApplicationSettings.Current.ClientNumber);
                 if (await clientds.Load())
                 {
                     ApplicationData.Current.Client = clientds.Client;

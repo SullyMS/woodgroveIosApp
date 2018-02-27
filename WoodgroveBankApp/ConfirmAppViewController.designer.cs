@@ -44,10 +44,6 @@ namespace WoodgroveBankApp
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIActivityIndicatorView ProgressRing { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel PurposeLabel { get; set; }
 
         [Outlet]
@@ -93,11 +89,6 @@ namespace WoodgroveBankApp
             if (PhoneLabel != null) {
                 PhoneLabel.Dispose ();
                 PhoneLabel = null;
-            }
-
-            if (ProgressRing != null) {
-                ProgressRing.Dispose ();
-                ProgressRing = null;
             }
 
             if (PurposeLabel != null) {

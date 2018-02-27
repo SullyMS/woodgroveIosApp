@@ -42,7 +42,7 @@ namespace WoodgroveBankApp
                 BranchNumberLabel.Text = b.Number;
                 BranchNameLabel.Text = b.Name;
                 StreetLabel.Text = b.Street1;
-                CityLabel.Text = $"{b.City}, {b.Province.DisplayLabel} {b.PostalCode}";
+                CityLabel.Text = $"{b.City}, {b.Province} {b.PostalCode}";
                 PhoneLabel.Text = b.PhoneNumber;
                 FaxLabel.Text = b.FaxNumber;
                 MKPointAnnotation point = new MKPointAnnotation()

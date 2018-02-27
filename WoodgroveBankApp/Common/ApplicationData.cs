@@ -5,23 +5,25 @@ namespace WoodgroveBankApp.Common
 {
     public class ApplicationData
     {
-        public ApplicationData()
-        {
-            NewAppointment = new Appointment()
-            {
-                BranchNumber = "100",
-                ClientId = "123456"
+        private Client _client = null;
 
-            };
-        }
+        public ApplicationData(){}
 
         private static ApplicationData _current;
         public static ApplicationData Current => _current ?? (_current = new ApplicationData());
 
         #region Properties
-        public Client Client { get; set; }
+        public Client Client
+        {
+            get => _client;
+            set
+            {
+                _client = value;
+                HomeBranch = _client.Branch;
+            }
+        }
         public Appointment NewAppointment { get; set; }
-        public Branch HomeBranch { get; set; }
+        public Branch HomeBranch { get; private set; }
         #endregion
     }
 }

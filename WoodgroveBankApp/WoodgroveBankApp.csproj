@@ -188,6 +188,8 @@
     <Compile Include="ConfirmAppViewController.designer.cs">
       <DependentUpon>ConfirmAppViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\ApplicationSettings.cs" />
+    <Compile Include="Common\ImageConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalServices\CalServices.csproj">
@@ -196,7 +198,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Settings.bundle\Root.plist" />
+    <BundleResource Include="Settings.bundle\Root.plist">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

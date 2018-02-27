@@ -17,7 +17,7 @@ namespace WoodgroveBankApp
             //create a new appointment for this client
             ApplicationData.Current.NewAppointment = new CalServices.Models.Appointment()
             {
-                ClientId = ApplicationData.Current.Client.Id,
+                ClientId = ApplicationData.Current.Client.CustomerNumber,
                 BranchId = ApplicationData.Current.Client.HomeBranchId,
                 BranchNumber = ApplicationData.Current.HomeBranch.Number,
                 AppointmentLanguage = ApplicationData.Current.Client.PrimaryLanguage

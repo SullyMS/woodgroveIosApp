@@ -1,97 +1,20 @@
-﻿namespace CalServices.Models
+﻿using Newtonsoft.Json;
+
+namespace CalServices.Models
 {
-    using Newtonsoft.Json;
-
-    public class Branch
-    {
-        [JsonProperty("Id")]
-        public string Id { get; set; }
-
-        [JsonProperty("Name")]
-        public string Name { get; set; }
-
-        [JsonProperty("Number")]
-        public string Number { get; set; }
-
-        [JsonProperty("Street1")]
-        public string Street1 { get; set; }
-
-        [JsonProperty("Street2")]
-        public object Street2 { get; set; }
-
-        [JsonProperty("City")]
-        public string City { get; set; }
-
-        [JsonProperty("PostalCode")]
-        public string PostalCode { get; set; }
-
-        [JsonProperty("Province")]
-        public EntityStatus Province { get; set; }
-
-        [JsonProperty("Latitude")]
-        public double Latitude { get; set; }
-
-        [JsonProperty("Longitude")]
-        public double Longitude { get; set; }
-
-        [JsonProperty("PhoneNumber")]
-        public string PhoneNumber { get; set; }
-
-        [JsonProperty("FaxNumber")]
-        public string FaxNumber { get; set; }
-
-        [JsonProperty("TimeZoneStandardName")]
-        public string TimeZoneStandardName { get; set; }
-
-        [JsonProperty("SundayOpen")]
-        public System.DateTimeOffset SundayOpen { get; set; }
-
-        [JsonProperty("SundayClose")]
-        public System.DateTimeOffset SundayClose { get; set; }
-
-        [JsonProperty("MondayOpen")]
-        public System.DateTimeOffset MondayOpen { get; set; }
-
-        [JsonProperty("MondayClose")]
-        public System.DateTimeOffset MondayClose { get; set; }
-
-        [JsonProperty("TuesdayOpen")]
-        public System.DateTimeOffset TuesdayOpen { get; set; }
-
-        [JsonProperty("TuesdayClose")]
-        public System.DateTimeOffset TuesdayClose { get; set; }
-
-        [JsonProperty("WednesdayOpen")]
-        public System.DateTimeOffset WednesdayOpen { get; set; }
-
-        [JsonProperty("WednesdayClose")]
-        public System.DateTimeOffset WednesdayClose { get; set; }
-
-        [JsonProperty("ThursdayOpen")]
-        public System.DateTimeOffset ThursdayOpen { get; set; }
-
-        [JsonProperty("ThursdayClose")]
-        public System.DateTimeOffset ThursdayClose { get; set; }
-
-        [JsonProperty("FridayOpen")]
-        public System.DateTimeOffset FridayOpen { get; set; }
-
-        [JsonProperty("FridayClose")]
-        public System.DateTimeOffset FridayClose { get; set; }
-
-        [JsonProperty("SaturdayOpen")]
-        public System.DateTimeOffset SaturdayOpen { get; set; }
-
-        [JsonProperty("SaturdayClose")]
-        public System.DateTimeOffset SaturdayClose { get; set; }
-
-        [JsonProperty("TodaysOpenTime")]
-        public System.DateTimeOffset TodaysOpenTime { get; set; }
-
-        [JsonProperty("TodaysCloseTime")]
-        public System.DateTimeOffset TodaysCloseTime { get; set; }
-
-        [JsonProperty("HolidayCalendarId")]
-        public string HolidayCalendarId { get; set; }
-    }
-}
+    public class Branch     {         [JsonProperty("ms_branchid")]         public string Id { get; set; }          [JsonProperty("ms_branchname")]         public string Name { get; set; }          [JsonProperty("ms_name")]         public string Number { get; set; }          [JsonProperty("ms_street1")]         public string Street1 { get; set; }          [JsonProperty("ms_street2")]         public object Street2 { get; set; }          [JsonProperty("ms_city")]         public string City { get; set; }          [JsonProperty("ms_postalcode")]         public string PostalCode { get; set; }          [JsonProperty("ms_province")]         public int ms_province { get; set; }          [JsonProperty("ms_lat")]         public double Latitude { get; set; }          [JsonProperty("ms_long")]         public double Longitude { get; set; }          [JsonProperty("ms_phonenumber")]         public string PhoneNumber { get; set; }          [JsonProperty("ms_faxnumber")]         public string FaxNumber { get; set; }          [JsonProperty("ms_timezone")]         public int TimeZoneStandardCode { get; set; }          [JsonProperty("_ms_holidaycalendarid_value")]         public string HolidayCalendarId { get; set; }          public string Province
+        {
+            get
+            {
+                switch (ms_province)
+                {
+                    case 717660008:
+                        return "Ontario";
+                    case 717660000:
+                        return "Alberta";
+                    default:
+                        return string.Empty;
+                }
+            }
+        }          [JsonIgnore]         public static string[] FIELDS => new string[14] { "ms_branchid", "ms_branchname", "ms_name", "ms_street1", "ms_street2", "ms_city",
+            "ms_postalcode", "ms_lat", "ms_long", "ms_phonenumber", "ms_faxnumber", "ms_timezone", "_ms_holidaycalendarid_value", "ms_province"};      } }
