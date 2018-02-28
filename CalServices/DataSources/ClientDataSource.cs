@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CalServices.Dynamics.Models;
+using CalServices.Dynamics.Messages;
 using CalServices.Dynamics.Services;
 using CalServices.Models;
 using Newtonsoft.Json;
@@ -20,12 +20,21 @@ namespace CalServices.DataSources
             RelatedEntity relatedBranch = new RelatedEntity()
             {
                 IdField = Client.BRANCH_ID_FIELD, 
-                Fields = Branch.FIELDS
+                Fields = new SelectFieldsList(Branch.FIELDS)
             };
-            D365ServiceResponse response = await service.GetRecordById(Client.ENTITY_NAME, ClientId, 
-                                                                       Client.ALT_KEY, true, Client.FIELDS, relatedBranch);
+            RetreiveRequest request = new RetreiveRequest()
+            {
+                EntityName = Client.ENTITY_NAME,
+                Fields = new SelectFieldsList(Client.FIELDS),
+                IsAlternateKey = true,
+                IdValue = ClientId,
+                KeyFieldName = Client.ALT_KEY,
+                RelatedEntity = relatedBranch
+            };
+
+            D365ServiceResponse response = await service.GetRecordById(request);
             if(response.Result == ServiceResult.Success){
-                Client = JsonConvert.DeserializeObject<Client>(response.Json);
+                Client = response.GetData<Client>();
                 return true;
             }
             return false;

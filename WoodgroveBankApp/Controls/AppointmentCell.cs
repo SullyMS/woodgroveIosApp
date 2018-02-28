@@ -12,14 +12,14 @@ namespace WoodgroveBankApp
         }
 
         #region Methods
-        public void Update(Appointment Appointment)
+        public void Update(D365Appointment Appointment)
         {
-            TitleLabel.Text = Appointment.BranchNumber;
+            TitleLabel.Text = Appointment.Branch.Name;
             AddressLabel.Text = "Address";
             DateLabel.Text = $"{Appointment.StartDate: MMMM d}";
             TimeLabel.Text = $"{Appointment.StartDate: h:mm} - {Appointment.EndDate: h:mm tt}";
-            ReasonLabel.Text = Appointment.AppointmentType.DisplayLabel;
-            StatusLabel.Text = Appointment.Status.DisplayLabel;
+            ReasonLabel.Text = Appointment.AppointmentReason;
+            StatusLabel.Text = Appointment.Status;
             //image
             IconImage.Image = UIImage.FromBundle("WoodIcon");
         }

@@ -5,6 +5,7 @@ using CalServices.DataSources;
 using System.Threading.Tasks;
 using CalServices.Models;
 using System.Collections.Generic;
+using WoodgroveBankApp.Common;
 
 namespace WoodgroveBankApp
 {
@@ -35,17 +36,7 @@ namespace WoodgroveBankApp
             //add the new appointment button
             NavigationItem.RightBarButtonItem = new UIBarButtonItem("New", UIBarButtonItemStyle.Plain, OnNewAppointment);
             //load the appointments
-            if (_tableSource == null)
-            {
-                AppointmentsDataSource ds = new AppointmentsDataSource("123456");
-                Task loadTask = Task.Run(async () =>
-                {
-                    if(await ds.Load()){
-                        _tableSource = new AppointmentsTableSource(ds.Appointments);
-                    }
-                });
-                loadTask.Wait();
-            }
+            _tableSource = new AppointmentsTableSource(ApplicationData.Current.Appointments);
         }
 
         private void OnNewAppointment(object sender, EventArgs e)
@@ -79,13 +70,13 @@ namespace WoodgroveBankApp
 
     public class AppointmentsTableSource : UITableViewSource
     {
-        public AppointmentsTableSource(List<Appointment> Appointments)
+        public AppointmentsTableSource(List<D365Appointment> Appointments)
         {
             this.Appointments = Appointments;
         }
 
         #region Properties
-        public List<Appointment> Appointments { get; private set; }
+        public List<D365Appointment> Appointments { get; private set; }
         #endregion
 
         #region Methods
@@ -95,7 +86,7 @@ namespace WoodgroveBankApp
 
             if (Appointments != null)
             {
-                Appointment appointment = Appointments[indexPath.Row];
+                D365Appointment appointment = Appointments[indexPath.Row];
                 cell.Update(appointment);
             }
             return cell;

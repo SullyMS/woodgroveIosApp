@@ -1,10 +1,8 @@
 using Foundation;
 using System;
 using UIKit;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using CalServices.Models;
-using CalServices.DataSources;
 using WoodgroveBankApp.Common;
 
 namespace WoodgroveBankApp
@@ -15,36 +13,19 @@ namespace WoodgroveBankApp
         {
         }
 
-        #region Properties
-        private List<EntityStatus> AppointmentReasons { get; set; }
-        #endregion
-
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
             //set the appointment reason
             AppReasonViewController controller = segue.SourceViewController as AppReasonViewController;
-            EntityStatus reason = controller.AppointmentReasons[controller.TableView.IndexPathForSelectedRow.Row];
-            ApplicationData.Current.NewAppointment.AppointmentType = reason;
-            //TO DO: SET THE SUB TYPE
+            AppointmentReason reason = ApplicationData.Current.AppointmentTypes[controller.TableView.IndexPathForSelectedRow.Row];
+            ApplicationData.Current.NewAppointment.AppointmentType = new EntityStatus { Value = reason.AppointmentTypeCode, DisplayLabel = reason.Name };
+            ApplicationData.Current.NewAppointment.AppointmentSubType = new EntityStatus { Value = reason.AppointmentSubTypeCode };
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            if (AppointmentReasons == null)
-            {
-                Task getApptReaTask = Task.Run(async () =>
-                {
-                    ApptReasonDataSource ds = new ApptReasonDataSource();
-                    if (await ds.Load())
-                    {
-                        AppointmentReasons = ds.AppointmentTypes;
-                    }
-                });
-                getApptReaTask.Wait();
-            }
         }
 
         public override void ViewWillAppear(bool animated)
@@ -53,18 +34,18 @@ namespace WoodgroveBankApp
             //NavigationItem.BackBarButtonItem.Title = "Back";
 
             //set the table source
-            TableView.Source = new ApptTypeSource(AppointmentReasons);
+            TableView.Source = new ApptTypeSource(ApplicationData.Current.AppointmentTypes);
             TableView.ReloadData();
         }
     }
 
     public class ApptTypeSource : UITableViewSource
     {
-        public ApptTypeSource(List<EntityStatus> ApptTypes){
+        public ApptTypeSource(List<AppointmentReason> ApptTypes){
             AppointmentTypes = ApptTypes;
         }
 
-        public List<EntityStatus> AppointmentTypes { get; private set; }
+        public List<AppointmentReason> AppointmentTypes { get; private set; }
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
@@ -76,8 +57,9 @@ namespace WoodgroveBankApp
             UITableViewCell cell = tableView.DequeueReusableCell("CellId", indexPath);
             if (AppointmentTypes != null)
             {
-                EntityStatus apptType = AppointmentTypes[indexPath.Row];
-                cell.TextLabel.Text = apptType.DisplayLabel;
+                AppointmentReason apptType = AppointmentTypes[indexPath.Row];
+                cell.TextLabel.Text = apptType.Name;
+                cell.DetailTextLabel.Text = apptType.Description;
             }
             return cell;
         }

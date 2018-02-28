@@ -50,13 +50,22 @@
     <Compile Include="Dynamics\Base\BaseD365Service.cs" />
     <Compile Include="Dynamics\Converters\ActivityPartyConverter.cs" />
     <Compile Include="Dynamics\Converters\JsonLookUpFieldConverter.cs" />
-    <Compile Include="Dynamics\Models\BaseEntity.cs" />
-    <Compile Include="Dynamics\Models\D365ServiceResponse.cs" />
-    <Compile Include="Dynamics\Models\RelatedEntity.cs" />
     <Compile Include="Dynamics\Messages\CreateServiceResponse.cs" />
     <Compile Include="Dynamics\Messages\WhoAmIResponse.cs" />
     <Compile Include="Dynamics\Services\D365CrudService.cs" />
     <Compile Include="Models\DynamicsSettings.cs" />
+    <Compile Include="Dynamics\Messages\RetreiveMultipleRequest.cs" />
+    <Compile Include="Dynamics\Messages\RelatedEntity.cs" />
+    <Compile Include="Dynamics\Messages\QueryFilter.cs" />
+    <Compile Include="Models\D365Appointment.cs" />
+    <Compile Include="Dynamics\Base\BaseRetreiveRequest.cs" />
+    <Compile Include="Dynamics\Messages\RetreiveRequest.cs" />
+    <Compile Include="Dynamics\Messages\SelectFieldsList.cs" />
+    <Compile Include="Models\AppointmentReason.cs" />
+    <Compile Include="Utils\ReferenceData.cs" />
+    <Compile Include="Dynamics\Messages\D365ServiceResponse.cs" />
+    <Compile Include="Dynamics\Base\BaseEntity.cs" />
+    <Compile Include="Dynamics\Messages\DynamicsPayload.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -67,7 +76,6 @@
     <Folder Include="Dynamics\Converters\" />
     <Folder Include="Dynamics\Messages\" />
     <Folder Include="Dynamics\Services\" />
-    <Folder Include="Dynamics\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

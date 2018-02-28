@@ -3,7 +3,7 @@ using System.Net.Http;
 using CalServices.Dynamics.Base;
 using Newtonsoft.Json;
 
-namespace CalServices.Dynamics.Models
+namespace CalServices.Dynamics.Messages
 {
     public class D365ServiceResponse
     {
@@ -59,8 +59,17 @@ namespace CalServices.Dynamics.Models
             {
                 try
                 {
-                    T data = JsonConvert.DeserializeObject<T>(Json);
-                    return (T)Convert.ChangeType(data, typeof(T));
+                    DynamicsPayload payload = JsonConvert.DeserializeObject<DynamicsPayload>(Json);
+                    T data = default(T);
+                    if (payload.Value == null)
+                    {
+                        data = JsonConvert.DeserializeObject<T>(Json);
+                        return (T)Convert.ChangeType(data, typeof(T));
+                    }
+                    else
+                    {
+                        return payload.Value.ToObject<T>();
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CalServices.Dynamics.Models
+namespace CalServices.Dynamics.Base
 {
     public abstract class BaseEntity
     {

@@ -26,7 +26,7 @@ namespace WoodgroveBankApp
             {
                 Appointment a = ApplicationData.Current.NewAppointment;
                 DateLabel.Text = $"{a.StartDate:MMM dd, yyyy}";
-                TimeLabel.Text = $"{a.StartDate: h:mm} - {a.EndDate: h:mm tt}";
+                TimeLabel.Text = $"{a.StartDate:h:mm} - {a.EndDate:h:mm tt}";
                 PurposeLabel.Text = a.AppointmentType.DisplayLabel;
                 //TO DO: Change this when added the ability to change branch
                 Branch b = ApplicationData.Current.HomeBranch;
@@ -65,6 +65,8 @@ namespace WoodgroveBankApp
                 {
                     if (response.Result == 1)
                     {
+                        //refresh appointment data
+                        ApplicationData.Current.GetClientAppointments();
                         //success
                         ShowSuccess(response);
                     }
@@ -111,6 +113,8 @@ namespace WoodgroveBankApp
                 var alert = UIAlertController.Create("Schedule Error", $"Unable to confirm appointment: {Response?.ErrorMessage}", UIAlertControllerStyle.Alert);
                 alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                 PresentViewController(alert, true, null);
+                CancelButton.Enabled = true;
+                ConfirmButton.Enabled = true;
             });
         }
 
@@ -121,7 +125,7 @@ namespace WoodgroveBankApp
             ConfirmationRequest request = new ConfirmationRequest()
             {
                 AppointmentType = a.AppointmentType.Value,
-                AppointmentReason = 2,
+                AppointmentReason = a.AppointmentSubType.Value,
                 AppointmentSource = Appointment.MOBILE_APP_SOURCE,
                 AdvisorEmailAddress = a.AdvisorEmail,
                 AppointmentLanguage = a.AppointmentLanguage,

@@ -16,10 +16,6 @@ namespace WoodgroveBankApp
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView BackGroundImage { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView ClientImage { get; set; }
 
         [Outlet]
@@ -44,11 +40,6 @@ namespace WoodgroveBankApp
 
         void ReleaseDesignerOutlets ()
         {
-            if (BackGroundImage != null) {
-                BackGroundImage.Dispose ();
-                BackGroundImage = null;
-            }
-
             if (ClientImage != null) {
                 ClientImage.Dispose ();
                 ClientImage = null;

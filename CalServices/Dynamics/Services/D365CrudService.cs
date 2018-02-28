@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CalServices.Dynamics.Base;
-using CalServices.Dynamics.Models;
+using CalServices.Dynamics.Messages;
 
 namespace CalServices.Dynamics.Services
 {
@@ -9,66 +9,26 @@ namespace CalServices.Dynamics.Services
         public D365CrudService() { }
 
         #region Methods
-        public async Task<D365ServiceResponse> GetRecordById(string EntityName, string Id, string KeyFieldName = "", bool IsAlternateId = false, string[] Fields = null, RelatedEntity Related = null)
+        public async Task<D365ServiceResponse> GetRecordById(RetreiveRequest Request)
         {
-            if (string.IsNullOrEmpty(KeyFieldName))
+            if (Request != null)
             {
-                KeyFieldName = $"{EntityName}id";
+                string operation = $"{BaseServiceUrl}{Request.Operation}";
+                D365ServiceResponse response = await SendGetRequestAsync(operation);
+                return response;
             }
-            string serviceUrl = GetServiceUrl(EntityName, Id, KeyFieldName, IsAlternateId, Fields, Related);
-            D365ServiceResponse response = await SendGetRequestAsync(serviceUrl);
-            return response;
+            return null;
         }
 
-        private string GetServiceUrl(string EntityName, string Id, string KeyFieldName, bool IsAlternateId = false, string[] Fields = null, RelatedEntity Related = null)
+        public async Task<D365ServiceResponse> RetreiveMultiple(RetreiveMultipleRequest Request)
         {
-            string operation = string.Empty;
-            if (IsAlternateId)
-            {
-                operation = $"{BaseServiceUrl}{EntityName.ToLower()}s({KeyFieldName}='{Id}')";
+            if(Request != null){
+                string operation = $"{BaseServiceUrl}{Request.Operation}";
+                System.Diagnostics.Debug.WriteLine(operation);
+                D365ServiceResponse response = await SendGetRequestAsync(operation);
+                return response;
             }
-            else
-            {
-                operation = $"{BaseServiceUrl}{EntityName.ToLower()}s({Id})";
-            }
-            if (Fields != null)
-            {
-                string query = @"?$select=";
-                bool isfirst = true;
-                foreach (string s in Fields)
-                {
-                    if (isfirst)
-                    {
-                        query += s;
-                        isfirst = false;
-                    }
-                    else
-                    {
-                        query += $",{s}";
-                    }
-                }
-                operation += query;
-            }
-            if (Related != null)
-            {
-                string query = $"&$expand={Related.IdField}($select=";
-                bool isfirst = true;
-                foreach (string s in Related.Fields)
-                {
-                    if (isfirst)
-                    {
-                        query += s;
-                        isfirst = false;
-                    }
-                    else
-                    {
-                        query += $",{s}";
-                    }
-                }
-                operation += $"{query})";
-            }
-
-            return operation;
+            return null;
         }
         #endregion
 

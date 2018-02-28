@@ -40,10 +40,13 @@ namespace WoodgroveBankApp
                 if (await clientds.Load())
                 {
                     ApplicationData.Current.Client = clientds.Client;
+
                 }
             });
 
             loadClient.Wait();
+            ApplicationData.Current.GetAppointmentTypes();
+            ApplicationData.Current.GetClientAppointments();
 
             return true;
         }

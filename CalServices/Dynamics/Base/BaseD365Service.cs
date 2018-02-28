@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CalServices.Utils;
-using CalServices.Dynamics.Models;
+using CalServices.Dynamics.Messages;
 
 namespace CalServices.Dynamics.Base
 {
@@ -15,7 +15,7 @@ namespace CalServices.Dynamics.Base
         #endregion
 
         #region Methods
-        protected async Task<D365ServiceResponse> SendGetRequestAsync(string Operation, string Parameters = "")
+        protected async Task<D365ServiceResponse> SendGetRequestAsync(string Operation)
         {
             HttpResponseMessage apiResponse = null;
             D365ServiceResponse response = null;
@@ -40,6 +40,7 @@ namespace CalServices.Dynamics.Base
                         if (apiResponse.IsSuccessStatusCode)
                         {
                             string json = await apiResponse.Content.ReadAsStringAsync();
+                            System.Diagnostics.Debug.WriteLine(json);
                             response = new D365ServiceResponse(apiResponse, ServiceResult.Success, json);
                         }
                         else

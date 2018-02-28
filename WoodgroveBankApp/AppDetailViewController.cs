@@ -11,7 +11,7 @@ namespace WoodgroveBankApp
         {
         }
 
-        public Appointment Appointment
+        public D365Appointment Appointment
         {
             get; set;
         }
@@ -35,11 +35,11 @@ namespace WoodgroveBankApp
             base.ViewWillAppear(animated);
             Title = $"Appointment: {Appointment.ConfirmationNumber}";
             ConfNumLabel.Text = $"Confirmation Number: {Appointment.ConfirmationNumber}";
-            StatusLabel.Text = $"Status: {Appointment.Status.DisplayLabel}";
+            StatusLabel.Text = $"Status: {Appointment.Status}";
             DateLabel.Text = $"Date: {Appointment.StartDate:MMM dd, yyyy}";
             TimeLabel.Text = $"Time: {Appointment.StartDate:h:mm} - {Appointment.EndDate:h:mm tt}";
-            PurposeLabel.Text = $"Purpose: {Appointment.AppointmentType.DisplayLabel}";
-            BranchLabel.Text = $"Branch: {Appointment.BranchNumber}";
+            PurposeLabel.Text = $"Purpose: {Appointment.AppointmentReason}";
+            BranchLabel.Text = $"Branch: {Appointment.Branch.Name}";
         }
 
         #endregion

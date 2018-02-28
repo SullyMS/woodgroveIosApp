@@ -89,7 +89,8 @@ namespace WoodgroveBankApp
             {
                 DataSource = new ScheduleDataSource(StartDate, EndDate,
                                                     ApplicationData.Current.NewAppointment.BranchNumber,
-                                                    ApplicationData.Current.NewAppointment.AppointmentType.Value, 2,
+                                                    ApplicationData.Current.NewAppointment.AppointmentType.Value, 
+                                                    ApplicationData.Current.NewAppointment.AppointmentSubType.Value,
                                                     ApplicationData.Current.Client.PrimaryLanguage);
                 if (await DataSource.Load())
                 {
@@ -108,6 +109,7 @@ namespace WoodgroveBankApp
                     {
                         ProgressRing.StopAnimating();
                         var alert = UIAlertController.Create("Error", "Load Error", UIAlertControllerStyle.Alert);
+                        alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                         PresentViewController(alert, true, null);
                     });
                 }

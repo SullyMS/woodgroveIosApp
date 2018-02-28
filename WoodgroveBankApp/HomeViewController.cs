@@ -20,7 +20,6 @@ namespace WoodgroveBankApp
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //setup the picture scroll view
             PictureScrollView.ContentSize = PictureView.Frame.Size;
             PictureScrollView.Scrolled += (sender, e) =>
             {
@@ -48,7 +47,7 @@ namespace WoodgroveBankApp
             Client client = ApplicationData.Current.Client;
             if (client != null)
             {
-                WelcomeLabel.Text = $"Welcome {ApplicationData.Current.Client.FirstName}";
+                WelcomeLabel.Text = $"Welcome back \r\n{ApplicationData.Current.Client.FirstName}";
                 //set the client image
                 if (!string.IsNullOrEmpty(client.Image))
                 {

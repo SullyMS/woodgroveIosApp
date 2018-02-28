@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using CalServices.Dynamics.Models;
 using System.Linq;
 using System.Text.RegularExpressions;
 
