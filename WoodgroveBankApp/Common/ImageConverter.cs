@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Foundation;
+﻿using Foundation;
 using UIKit;
 
 namespace WoodgroveBankApp.Common

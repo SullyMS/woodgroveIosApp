@@ -115,6 +115,16 @@
     <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\appointment_icon.png" />
     <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\appointment_icon_2x.png" />
     <ImageAsset Include="Assets.xcassets\AppointmentsIcon.imageset\appointment_icon_3x.png" />
+    <ImageAsset Include="Assets.xcassets\PageBackground.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\PageBackground.imageset\background_blur.jpg" />
+    <ImageAsset Include="Assets.xcassets\Ad1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Ad1.imageset\mortgage_ad.png" />
+    <ImageAsset Include="Assets.xcassets\Ad2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Ad2.imageset\travel_visa.png" />
+    <ImageAsset Include="Assets.xcassets\Ad3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Ad3.imageset\autoloan_banner.png" />
+    <ImageAsset Include="Assets.xcassets\Ad4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Ad4.imageset\investment_advisor_offer.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -129,6 +139,12 @@
     <Folder Include="Common\" />
     <Folder Include="Assets.xcassets\AccountsIcon.imageset\" />
     <Folder Include="Assets.xcassets\AppointmentsIcon.imageset\" />
+    <Folder Include="Assets.xcassets\Background.imageset\" />
+    <Folder Include="Assets.xcassets\PageBackground.imageset\" />
+    <Folder Include="Assets.xcassets\Ad1.imageset\" />
+    <Folder Include="Assets.xcassets\Ad2.imageset\" />
+    <Folder Include="Assets.xcassets\Ad3.imageset\" />
+    <Folder Include="Assets.xcassets\Ad4.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

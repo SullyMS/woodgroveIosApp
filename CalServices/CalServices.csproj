@@ -57,7 +57,6 @@
     <Compile Include="Dynamics\Messages\WhoAmIResponse.cs" />
     <Compile Include="Dynamics\Services\D365CrudService.cs" />
     <Compile Include="Models\DynamicsSettings.cs" />
-    <Compile Include="Utils\ImageConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

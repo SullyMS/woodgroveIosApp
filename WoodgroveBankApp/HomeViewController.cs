@@ -20,7 +20,12 @@ namespace WoodgroveBankApp
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
+            //setup the picture scroll view
+            PictureScrollView.ContentSize = PictureView.Frame.Size;
+            PictureScrollView.Scrolled += (sender, e) =>
+            {
+                PicPageControl.CurrentPage = (nint)(PictureScrollView.ContentOffset.X / PictureScrollView.Frame.Width);
+            };
         }
 
         public override void ViewWillAppear(bool animated)
@@ -48,6 +53,8 @@ namespace WoodgroveBankApp
                 if (!string.IsNullOrEmpty(client.Image))
                 {
                     ClientImage.Image = ImageConverter.GetImageFromBase64String(client.Image);
+                    ClientImage.Layer.BorderWidth = 3;
+                    ClientImage.Layer.BorderColor = new UIColor(red: 0.0784f, green: 0.4392f, blue: 0f, alpha: 1.0f).CGColor;
                 }
             }
         }

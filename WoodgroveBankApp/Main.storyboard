@@ -249,13 +249,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="57956" translatesAutoresizingMaskIntoConstraints="NO" image="PageBackground" fixedFrame="YES">
+                                <rect key="frame" x="0.0" y="45" width="375" height="398"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="57951" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="451" width="375" height="167"/>
+                                <constraints>
+                                    <constraint id="57953" firstItem="57951" firstAttribute="height" constant="167"/>
+                                </constraints>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="12467" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="54" y="196" width="268" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="532" width="343" height="31"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
-                                    <constraint id="57393" firstItem="12467" firstAttribute="width" constant="268"/>
+                                    <constraint id="57393" firstItem="12467" firstAttribute="width" constant="343"/>
                                 </constraints>
                             </label>
                             <navigationBar contentMode="scaleToFill" id="10692" translatesAutoresizingMaskIntoConstraints="NO">
@@ -271,27 +282,80 @@
                                     <constraint id="50892" firstItem="10692" firstAttribute="height" constant="64"/>
                                 </constraints>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="55288" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="138" y="88" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="55288" translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES">
+                                <rect key="frame" x="138" y="404" width="100" height="100"/>
                                 <constraints>
                                     <constraint id="55292" firstItem="55288" firstAttribute="height" constant="100"/>
-                                    <constraint id="55293" firstItem="55288" firstAttribute="width" constant="100"/>
+                                    <constraint id="57945" firstItem="55288" firstAttribute="width" constant="100"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="56332">
                                 <rect key="frame" x="178" y="324" width="20" height="20"/>
                             </activityIndicatorView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="62293" pagingEnabled="YES" opaque="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES" bouncesZoom="NO" autoresizesSubviews="NO">
+                                <rect key="frame" x="0.0" y="55" width="375" height="311"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="62283" translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" autoresizesSubviews="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="20" width="1100" height="283"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="69616" translatesAutoresizingMaskIntoConstraints="NO" image="Ad1" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="32" width="340" height="200"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="62295" translatesAutoresizingMaskIntoConstraints="NO" image="Ad2" fixedFrame="YES">
+                                                <rect key="frame" x="372" y="32" width="340" height="200"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="62297" translatesAutoresizingMaskIntoConstraints="NO" image="Ad3" fixedFrame="YES">
+                                                <rect key="frame" x="736" y="32" width="340" height="200"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint id="62290" firstItem="62283" firstAttribute="width" constant="989"/>
+                                            <constraint id="67316" firstItem="62283" firstAttribute="height" constant="283"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="67313" firstItem="62293" firstAttribute="height" constant="311"/>
+                                    <constraint id="67319" firstItem="62283" firstAttribute="leading" secondItem="62293" secondAttribute="leading"/>
+                                    <constraint id="67320" firstItem="62283" firstAttribute="top" secondItem="62293" secondAttribute="top" constant="20"/>
+                                </constraints>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="63405" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="117" y="366" width="140" height="37"/>
+                                <color key="pageIndicatorTintColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                <color key="currentPageIndicatorTintColor" colorSpace="calibratedRGB" red="0.062745098039215685" green="0.49803921568627452" blue="0.00392156862745098" alpha="1"/>
+                                <constraints>
+                                    <constraint id="63407" firstItem="63405" firstAttribute="width" constant="140"/>
+                                    <constraint id="63408" firstItem="63405" firstAttribute="height" constant="37"/>
+                                </constraints>
+                            </pageControl>
                         </subviews>
                         <constraints>
                             <constraint id="10694" firstItem="10692" firstAttribute="top" secondItem="10335" secondAttribute="top"/>
                             <constraint id="10697" firstItem="10692" firstAttribute="leading" secondItem="10335" secondAttribute="leadingMargin" constant="-16"/>
                             <constraint id="10698" firstItem="10692" firstAttribute="trailing" secondItem="10335" secondAttribute="trailingMargin" constant="16"/>
-                            <constraint id="55817" firstItem="55288" firstAttribute="top" secondItem="10692" secondAttribute="top" constant="88"/>
-                            <constraint id="55819" firstItem="55288" firstAttribute="centerX" secondItem="10335" secondAttribute="centerX"/>
                             <constraint id="56848" firstItem="56332" firstAttribute="centerX" secondItem="10335" secondAttribute="centerX"/>
                             <constraint id="56849" firstItem="56332" firstAttribute="centerY" secondItem="10335" secondAttribute="centerY"/>
-                            <constraint id="57395" firstItem="12467" firstAttribute="centerX" secondItem="10335" secondAttribute="centerX"/>
-                            <constraint id="57396" firstItem="12467" firstAttribute="top" secondItem="55288" secondAttribute="bottom" constant="8"/>
+                            <constraint id="57944" firstItem="55288" firstAttribute="centerX" secondItem="10335" secondAttribute="centerX"/>
+                            <constraint id="57947" firstItem="10332" firstAttribute="top" secondItem="55288" secondAttribute="bottom" constant="114"/>
+                            <constraint id="57949" firstItem="12467" firstAttribute="centerX" secondItem="10335" secondAttribute="centerX"/>
+                            <constraint id="57950" firstItem="10332" firstAttribute="top" secondItem="12467" secondAttribute="bottom" constant="55"/>
+                            <constraint id="57952" firstItem="57951" firstAttribute="trailing" secondItem="10335" secondAttribute="trailingMargin" constant="16"/>
+                            <constraint id="57954" firstItem="10335" firstAttribute="leadingMargin" secondItem="57951" secondAttribute="leading" constant="16"/>
+                            <constraint id="57955" firstItem="57951" firstAttribute="bottom" secondItem="10332" secondAttribute="top"/>
+                            <constraint id="63409" firstItem="63405" firstAttribute="centerX" secondItem="10335" secondAttribute="centerX"/>
+                            <constraint id="63410" firstItem="63405" firstAttribute="centerY" secondItem="10335" secondAttribute="centerY" constant="51"/>
+                            <constraint id="67311" firstItem="10335" firstAttribute="leadingMargin" secondItem="62293" secondAttribute="leading" constant="16"/>
+                            <constraint id="67312" firstItem="62293" firstAttribute="top" secondItem="10692" secondAttribute="top" constant="55"/>
+                            <constraint id="68461" firstItem="62293" firstAttribute="trailing" secondItem="10335" secondAttribute="trailingMargin" constant="16"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="10412" image="HomeIcon"/>
@@ -300,6 +364,10 @@
                         <outlet property="WelcomeLabel" destination="12467" id="name-outlet-12467"/>
                         <outlet property="ClientImage" destination="55288" id="name-outlet-55288"/>
                         <outlet property="ProgressRing" destination="56332" id="name-outlet-56332"/>
+                        <outlet property="BackGroundImage" destination="57956" id="name-outlet-57956"/>
+                        <outlet property="PictureScrollView" destination="62293" id="name-outlet-62293"/>
+                        <outlet property="PictureView" destination="62283" id="name-outlet-62283"/>
+                        <outlet property="PicPageControl" destination="63405" id="name-outlet-63405"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10336" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -992,5 +1060,10 @@
         <image name="WoodIcon" width="32" height="32"/>
         <image name="AccountsIcon" width="32" height="32"/>
         <image name="AppointmentsIcon" width="32" height="32"/>
+        <image name="PageBackground" width="1080" height="1920"/>
+        <image name="Ad1" width="1200" height="800"/>
+        <image name="Ad2" width="1038" height="692"/>
+        <image name="Ad3" width="1038" height="692"/>
+        <image name="Ad4" width="1000" height="900"/>
     </resources>
 </document>

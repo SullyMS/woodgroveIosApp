@@ -16,7 +16,23 @@ namespace WoodgroveBankApp
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView BackGroundImage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView ClientImage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIPageControl PicPageControl { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView PictureScrollView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView PictureView { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -28,9 +44,29 @@ namespace WoodgroveBankApp
 
         void ReleaseDesignerOutlets ()
         {
+            if (BackGroundImage != null) {
+                BackGroundImage.Dispose ();
+                BackGroundImage = null;
+            }
+
             if (ClientImage != null) {
                 ClientImage.Dispose ();
                 ClientImage = null;
+            }
+
+            if (PicPageControl != null) {
+                PicPageControl.Dispose ();
+                PicPageControl = null;
+            }
+
+            if (PictureScrollView != null) {
+                PictureScrollView.Dispose ();
+                PictureScrollView = null;
+            }
+
+            if (PictureView != null) {
+                PictureView.Dispose ();
+                PictureView = null;
             }
 
             if (ProgressRing != null) {
