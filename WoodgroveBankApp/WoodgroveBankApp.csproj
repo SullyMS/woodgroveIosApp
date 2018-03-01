@@ -18,7 +18,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: john_sullivan@outlook.com (ZM5YHN4239)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFastDev>true</MtouchFastDev>
@@ -28,6 +28,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>VS: com.microsoft.WoodgroveBankApp Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -35,13 +36,14 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: john_sullivan@outlook.com (ZM5YHN4239)</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>VS: com.microsoft.WoodgroveBankApp Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -49,12 +51,13 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: john_sullivan@outlook.com (ZM5YHN4239)</CodesignKey>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>VS: com.microsoft.WoodgroveBankApp Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,11 +75,12 @@
     <MtouchProfiling>true</MtouchProfiling>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <IOSDebuggerPort>29482</IOSDebuggerPort>
+    <IOSDebuggerPort>29485</IOSDebuggerPort>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -127,6 +131,15 @@
     <ImageAsset Include="Assets.xcassets\Ad4.imageset\investment_advisor_offer.png" />
     <ImageAsset Include="Assets.xcassets\MicrosoftLogo.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\MicrosoftLogo.imageset\microsoft-logo.jpg" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\spotlight%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo%402x_iphone8.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo%402x_iphone7-11.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_87x87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_60x60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_40x40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_80x80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_1024x1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

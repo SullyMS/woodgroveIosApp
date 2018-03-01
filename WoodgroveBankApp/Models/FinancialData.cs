@@ -8,7 +8,7 @@ namespace WoodgroveBankApp.Models
         public FinancialData()
         {
             DepositAccounts = new List<FinancialAccount>();
-            DepositAccounts.Add(new FinancialAccount { Balance = 1234.23m, AccountNumber = "78765-0987654", ProductName = "Checking Account" }); 
+            DepositAccounts.Add(new FinancialAccount { Balance = 1234.23m, AccountNumber = "78765-0987654", ProductName = "Checking Account" });
             DepositAccounts.Add(new FinancialAccount { Balance = 15169.97m, AccountNumber = "87783-7850463", ProductName = "Savings Account" });
             DepositAccounts.Add(new FinancialAccount { Balance = 215179.91m, AccountNumber = "87783-7850463", ProductName = "Freedom Investor" });
             CreditAccounts = new List<FinancialAccount>();
@@ -21,6 +21,39 @@ namespace WoodgroveBankApp.Models
 
         public List<FinancialAccount> DepositAccounts { get; private set; }
         public List<FinancialAccount> CreditAccounts { get; set; }
+
+        #region Properties
+        private decimal _depositValue = 0m;
+        public decimal TotalDepositValue
+        {
+            get
+            {
+                if (_depositValue == 0m)
+                {
+                    foreach (FinancialAccount account in DepositAccounts)
+                    {
+                        _depositValue += account.Balance;
+                    }
+                }
+                return _depositValue;
+            }
+        }
+        private decimal _creditValue = 0m;
+        public decimal TotalCreditValue
+        {
+            get
+            {
+                if (_creditValue == 0m)
+                {
+                    foreach (FinancialAccount account in CreditAccounts)
+                    {
+                        _creditValue += account.Balance;
+                    }
+                }
+                return _creditValue;
+            }
+        }
+        #endregion
     }
 
     public class FinancialAccount
@@ -29,6 +62,7 @@ namespace WoodgroveBankApp.Models
         public string AccountNumber { get; set; }
         public string ProductName { get; set; }
     }
+
 
 
 }

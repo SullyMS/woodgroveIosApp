@@ -66,5 +66,28 @@ namespace WoodgroveBankApp
 
             return null;
         }
+
+        public override nint NumberOfSections(UITableView tableView)
+        {
+            return 2;
+        }
+
+        public override string TitleForHeader(UITableView tableView, nint section)
+        {
+            if (section == 0)
+            {
+                return "DEPOSIT ACCOUNTS";
+            }
+            return "CREDIT ACCOUNTS";
+        }
+
+        public override string TitleForFooter(UITableView tableView, nint section)
+        {
+            if (section == 0)
+            {
+                return $"{FinancialData.Instance.TotalDepositValue:C} - ({DepositAccounts.Count}) Account(s)";
+            }
+            return $"{FinancialData.Instance.TotalCreditValue:C} - ({CreditAccounts.Count}) Account(s)";
+        }
     }
 }

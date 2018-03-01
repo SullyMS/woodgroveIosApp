@@ -14,6 +14,7 @@ namespace WoodgroveBankApp
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            SetAppointmentCount(10);
             //create a new appointment for this client
             ApplicationData.Current.NewAppointment = new CalServices.Models.Appointment()
             {
@@ -21,7 +22,34 @@ namespace WoodgroveBankApp
                 BranchId = ApplicationData.Current.Client.HomeBranchId,
                 BranchNumber = ApplicationData.Current.HomeBranch.Number,
                 AppointmentLanguage = ApplicationData.Current.Client.PrimaryLanguage
-            }; 
+            };
+
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            UpdateAppointmentsCount();
+        }
+
+        public void UpdateAppointmentsCount()
+        {
+            if (ApplicationData.Current.Appointments != null)
+            {
+                TabBarItem.BadgeColor = UIColor.Red;
+                TabBarItem.BadgeValue = ApplicationData.Current.Appointments.Count.ToString();
+            }
+            else
+            {
+                TabBarItem.BadgeValue = null;
+
+            }
+        }
+
+        public void SetAppointmentCount(int count)
+        {
+            TabBarItem.BadgeColor = UIColor.Red;
+            TabBarItem.BadgeValue = count.ToString();
         }
     }
 }

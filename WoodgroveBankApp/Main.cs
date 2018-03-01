@@ -1,5 +1,4 @@
 ﻿using UIKit;
-using WoodgroveBankApp.Common;
 
 namespace WoodgroveBankApp
 {

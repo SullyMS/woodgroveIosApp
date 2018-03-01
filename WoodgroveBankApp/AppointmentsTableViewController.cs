@@ -18,14 +18,6 @@ namespace WoodgroveBankApp
 
 
         #region Methods
-        public void UpdateAppointmentsCount()
-        {
-            if (ApplicationData.Current.Appointments != null)
-            {
-                TabBarItem.BadgeValue = ApplicationData.Current.Appointments.Count.ToString();
-            }
-        }
-
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
@@ -55,14 +47,12 @@ namespace WoodgroveBankApp
             //load the appointments
             _tableSource = new AppointmentsTableSource(ApplicationData.Current.Appointments);
             UpdateTable();
-            UpdateAppointmentsCount();
         }
-       
+
         private void UpdateTable()
         {
             TableView.Source = _tableSource;
             TableView.ReloadData();
-            UpdateAppointmentsCount();
         }
         #endregion
 

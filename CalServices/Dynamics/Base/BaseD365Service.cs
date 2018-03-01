@@ -40,7 +40,9 @@ namespace CalServices.Dynamics.Base
                         if (apiResponse.IsSuccessStatusCode)
                         {
                             string json = await apiResponse.Content.ReadAsStringAsync();
+#if DEBUG
                             System.Diagnostics.Debug.WriteLine(json);
+#endif
                             response = new D365ServiceResponse(apiResponse, ServiceResult.Success, json);
                         }
                         else

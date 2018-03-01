@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CalServices.DataSources;
 using CalServices.Models;
 using CalServices.Utils;
+using UIKit;
 
 namespace WoodgroveBankApp.Common
 {
@@ -42,8 +43,17 @@ namespace WoodgroveBankApp.Common
                 Task dataTask = Task.Run(async () =>
                 {
                     Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
-                    //TODO: UPDATE the bade on the tab bar
                 });
+            }
+        }
+
+        public async Task LoadClientAppointments()
+        {
+            Appointments?.Clear();
+            if (Client != null)
+            {
+                AppointmentsDataSource ds = new AppointmentsDataSource();
+                Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
             }
         }
 

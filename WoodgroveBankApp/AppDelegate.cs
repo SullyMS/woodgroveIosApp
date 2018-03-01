@@ -45,10 +45,15 @@ namespace WoodgroveBankApp
 
                 }
             });
-
+            //wait for the client data
             loadClient.Wait();
             ApplicationData.Current.GetAppointmentTypes();
-            ApplicationData.Current.GetClientAppointments();
+
+            Task loadApps = Task.Run(async () =>
+            {
+                await ApplicationData.Current.LoadClientAppointments();
+            });
+            loadApps.Wait();
 
             return true;
         }

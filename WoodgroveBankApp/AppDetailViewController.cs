@@ -136,6 +136,7 @@ namespace WoodgroveBankApp
 
         private void OnCancelComplete(UIAlertAction obj)
         {
+            UpdateAppointmentCount();
             NavigationController.PopViewController(true);
         }
 
@@ -193,10 +194,22 @@ namespace WoodgroveBankApp
                 ProgressAlert.DismissViewController(true, null);
                 var alert = UIAlertController.Create("Check-In Complete", $"Check-In complete. {Appointment.Advisor.FullName} will be with you soon.", UIAlertControllerStyle.Alert);
 
-                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, OnCancelComplete));
+                alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, OnCheckInComplete));
 
                 PresentViewController(alert, true, null);
             });
+        }
+
+        private void OnCheckInComplete(UIAlertAction obj)
+        {
+            UpdateAppointmentCount();
+            NavigationController.PopViewController(true);
+        }
+
+        private void UpdateAppointmentCount()
+        {
+            NewAppNavController t = (NewAppNavController)TabBarController.ViewControllers[1];
+            t.UpdateAppointmentsCount();
         }
 
         private void StartCheckIn()

@@ -70,7 +70,6 @@
     <Compile Include="Utils\SchedulerSettings.cs" />
     <Compile Include="Models\CheckInResponse.cs" />
     <Compile Include="Models\SystemUser.cs" />
-    <Compile Include="DataSources\BaseRestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

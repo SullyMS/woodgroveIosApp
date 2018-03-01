@@ -20,6 +20,7 @@ namespace WoodgroveBankApp
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            //setup the scroll viewer
             PictureScrollView.ContentSize = PictureView.Frame.Size;
             PictureScrollView.Scrolled += (sender, e) =>
             {
@@ -30,6 +31,10 @@ namespace WoodgroveBankApp
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+            //set the appointment count
+            NewAppNavController t = (NewAppNavController)TabBarController.ViewControllers[1];
+            t.UpdateAppointmentsCount();
+
             //load the client data
             if (ApplicationData.Current.Client == null)
             {

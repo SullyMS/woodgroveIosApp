@@ -10,7 +10,6 @@ namespace WoodgroveBankApp
 {
     public partial class ConfirmAppViewController : UIViewController
     {
-
         #region Constructor
         public ConfirmAppViewController(IntPtr handle) : base(handle)
         {
@@ -18,6 +17,12 @@ namespace WoodgroveBankApp
         #endregion
 
         #region Overrides
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            UIStoryboard sb = UIStoryboard.FromName("Main", null);
+        }
 
         public override void ViewWillAppear(bool animated)
         {
