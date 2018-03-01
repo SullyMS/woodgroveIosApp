@@ -38,7 +38,7 @@ namespace WoodgroveBankApp.Common
             Appointments?.Clear();
             if (Client != null)
             {
-                AppointmentsDataSource ds = new AppointmentsDataSource(Client.CustomerNumber);
+                AppointmentsDataSource ds = new AppointmentsDataSource();
                 Task dataTask = Task.Run(async () =>
                 {
                     Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
@@ -57,6 +57,16 @@ namespace WoodgroveBankApp.Common
                 AppointmentTypes = ds.AppointmentTypes;
             });
 
+        }
+
+        public async Task RefreshAppointmentsAsync()
+        {
+            Appointments?.Clear();
+            if (Client != null)
+            {
+                AppointmentsDataSource ds = new AppointmentsDataSource();
+                Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
+            }
         }
         #endregion
     }

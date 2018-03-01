@@ -9,7 +9,7 @@ namespace CalServices.Dynamics.Messages
         {
             get
             {
-                string expand = $"&$expand={IdField}";
+                string expand = $"{IdField}";
                 if (Fields != null)
                 {
                     expand += $"({Fields.SelectString})";

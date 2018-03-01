@@ -125,6 +125,8 @@
     <ImageAsset Include="Assets.xcassets\Ad3.imageset\autoloan_banner.png" />
     <ImageAsset Include="Assets.xcassets\Ad4.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Ad4.imageset\investment_advisor_offer.png" />
+    <ImageAsset Include="Assets.xcassets\MicrosoftLogo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\MicrosoftLogo.imageset\microsoft-logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -145,6 +147,8 @@
     <Folder Include="Assets.xcassets\Ad2.imageset\" />
     <Folder Include="Assets.xcassets\Ad3.imageset\" />
     <Folder Include="Assets.xcassets\Ad4.imageset\" />
+    <Folder Include="Assets.xcassets\MicrosoftLogo.imageset\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -169,10 +173,6 @@
     <Compile Include="NewAppNavController.cs" />
     <Compile Include="NewAppNavController.designer.cs">
       <DependentUpon>NewAppNavController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AccountTableViewController.cs" />
-    <Compile Include="AccountTableViewController.designer.cs">
-      <DependentUpon>AccountTableViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="AppointmentsTableViewController.cs" />
     <Compile Include="AppointmentsTableViewController.designer.cs">
@@ -206,6 +206,15 @@
     </Compile>
     <Compile Include="Common\ApplicationSettings.cs" />
     <Compile Include="Common\ImageConverter.cs" />
+    <Compile Include="Models\FinancialData.cs" />
+    <Compile Include="AccountsTableViewController.cs" />
+    <Compile Include="AccountsTableViewController.designer.cs">
+      <DependentUpon>AccountsTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountCell.cs" />
+    <Compile Include="AccountCell.designer.cs">
+      <DependentUpon>AccountCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalServices\CalServices.csproj">

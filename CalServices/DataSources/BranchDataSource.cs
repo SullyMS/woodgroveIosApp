@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CalServices.Models;
 
 namespace CalServices.DataSources
@@ -13,7 +14,7 @@ namespace CalServices.DataSources
 
         public List<Branch> Branches { get; private set; }
 
-        public async override System.Threading.Tasks.Task<bool> Load()
+        public async Task<bool> Load()
         {
             DataServiceResponse<Branch> response = await GetData<Branch>(ServiceUrl);
             if(response.Success){

@@ -24,6 +24,10 @@ namespace WoodgroveBankApp
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView AdvisorImage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel BranchLabel { get; set; }
 
         [Outlet]
@@ -37,6 +41,18 @@ namespace WoodgroveBankApp
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel DateLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel EmailLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel FullNameLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel MobileLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -54,6 +70,14 @@ namespace WoodgroveBankApp
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel TimeLabel { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel TitleLabel { get; set; }
+
+        [Action ("CheckInButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void CheckInButton_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (Address1Label != null) {
@@ -64,6 +88,11 @@ namespace WoodgroveBankApp
             if (Address2Label != null) {
                 Address2Label.Dispose ();
                 Address2Label = null;
+            }
+
+            if (AdvisorImage != null) {
+                AdvisorImage.Dispose ();
+                AdvisorImage = null;
             }
 
             if (BranchLabel != null) {
@@ -86,6 +115,21 @@ namespace WoodgroveBankApp
                 DateLabel = null;
             }
 
+            if (EmailLabel != null) {
+                EmailLabel.Dispose ();
+                EmailLabel = null;
+            }
+
+            if (FullNameLabel != null) {
+                FullNameLabel.Dispose ();
+                FullNameLabel = null;
+            }
+
+            if (MobileLabel != null) {
+                MobileLabel.Dispose ();
+                MobileLabel = null;
+            }
+
             if (PhoneLabel != null) {
                 PhoneLabel.Dispose ();
                 PhoneLabel = null;
@@ -104,6 +148,11 @@ namespace WoodgroveBankApp
             if (TimeLabel != null) {
                 TimeLabel.Dispose ();
                 TimeLabel = null;
+            }
+
+            if (TitleLabel != null) {
+                TitleLabel.Dispose ();
+                TitleLabel = null;
             }
         }
     }

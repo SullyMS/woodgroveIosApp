@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CalServices.Dynamics.Messages;
 using CalServices.Dynamics.Services;
 using CalServices.Models;
+using CalServices.Utils;
 
 namespace CalServices.DataSources
 {
@@ -13,10 +14,7 @@ namespace CalServices.DataSources
 
         #endregion
 
-        public AppointmentsDataSource(string ClientId)
-        {
-            this.ClientId = ClientId;
-        }
+        public AppointmentsDataSource() { }
 
         #region Properties
         public List<Appointment> Appointments
@@ -24,29 +22,9 @@ namespace CalServices.DataSources
             get;
             private set;
         }
-        public string ClientId
-        {
-            get; private set;
-        }
-        private string ServiceUrl
-        {
-            get => string.Format(SERVICE_URL, ClientId);
-        }
         #endregion
 
         #region Methods
-        public async override Task<bool> Load()
-        {
-            Appointments = new List<Appointment>();
-            DataServiceResponse<Appointment> response = await this.GetData<Appointment>(ServiceUrl);
-            if (response.Success)
-            {
-                Appointments.Add(response.Data);
-                return true;
-            }
-            return false;
-        }
-
         public async Task<List<D365Appointment>> GetClientUpcomingAppointments(string RecordId)
         {
             D365CrudService service = new D365CrudService();
@@ -59,13 +37,18 @@ namespace CalServices.DataSources
                 IdField = D365Appointment.BRANCH_ID_FIELD,
                 Fields = new SelectFieldsList(Branch.FIELDS)
             };
+            RelatedEntity advisor = new RelatedEntity()
+            {
+                IdField = D365Appointment.ADVISOR_ID_NAV_FIELD,
+                Fields = new SelectFieldsList(SystemUser.FIELDS)
+            };
 
             RetreiveMultipleRequest request = new RetreiveMultipleRequest()
             {
                 EntityName = D365Appointment.ENTITY_NAME,
                 Fields = new SelectFieldsList(D365Appointment.FIELDS),
                 Filter = filter,
-                RelatedEntity = branch
+                RelatedEntities = new RelatedEntity[2] { branch, advisor }
             };
             D365ServiceResponse response = await service.RetreiveMultiple(request);
             if (response.Result == ServiceResult.Success)
@@ -77,7 +60,7 @@ namespace CalServices.DataSources
         #endregion
 
         #region Constants
-        private const string SERVICE_URL = "https://xrmdataservices.azurewebsites.net/api/FSClient/GetNextAppointment?ClientId={0}";
+        private const string SERVICE_URL = "{0}FSClient/GetNextAppointment?ClientId={1}";
         #endregion
     }
 }

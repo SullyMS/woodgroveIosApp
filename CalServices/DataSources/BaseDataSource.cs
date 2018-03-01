@@ -18,11 +18,6 @@ namespace CalServices.DataSources
         {
         }
 
-        #region AbstractMethods
-        public abstract Task<bool> Load();
-
-        #endregion
-
         #region Properties
         public ErrorType ErrorType { get; private set; }
         public string ErrorMessage { get; private set; }

@@ -50,6 +50,10 @@ namespace CalServices.Models
         public Branch Branch { get; set; }
         [JsonProperty("statuscode")]
         public int StatusCode { get; set; }
+        [JsonProperty("_ms_advisorid_value")]
+        public string AdvisorId { get; set; }
+        [JsonProperty("ms_advisorid_ms_branchappointment")]
+        public SystemUser Advisor { get; set; }
         #endregion
 
         #region NonDynamicsProperties
@@ -95,14 +99,15 @@ namespace CalServices.Models
 
         #region Constants
         public const string ENTITY_NAME = "ms_branchappointment";
-        public static string[] FIELDS = new string[18] { "subject", "scheduledstart", "scheduleddurationminutes", "activityid", "ms_preferreddate", "ms_appointmentlocation",
+        public static string[] FIELDS = new string[19] { "subject", "scheduledstart", "scheduleddurationminutes", "activityid", "ms_preferreddate", "ms_appointmentlocation",
             "ms_appointmentlanguage", "_ms_branchid_value", "ms_sendemailnotification", "ms_appointmenttype", "ms_sendclientcalendarinvite", "ms_appointmentsource",
-                    "ms_appointmentsubtype", "_ms_clientid_value", "ms_scheduleengineerrorcode", "ms_customercomments", "scheduledend", "statuscode"};
+            "ms_appointmentsubtype", "_ms_clientid_value", "ms_scheduleengineerrorcode", "ms_customercomments", "scheduledend", "statuscode", "_ms_advisorid_value"};
         public const int CONFIRMED_STATUS = 717660000;
         public const string STATUS_FIELD = "statuscode";
         public const string CLIENT_ID_FIELD = "_ms_clientid_value";
         public const string START_DATE_FIELD = "scheduledstart";
         public const string BRANCH_ID_FIELD = "ms_branchid_ms_branchappointment";
+        public const string ADVISOR_ID_NAV_FIELD = "ms_advisorid_ms_branchappointment";
         #endregion
     }
 }

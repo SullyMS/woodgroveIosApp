@@ -66,6 +66,11 @@
     <Compile Include="Dynamics\Messages\D365ServiceResponse.cs" />
     <Compile Include="Dynamics\Base\BaseEntity.cs" />
     <Compile Include="Dynamics\Messages\DynamicsPayload.cs" />
+    <Compile Include="Models\CancelAppointmentResponse.cs" />
+    <Compile Include="Utils\SchedulerSettings.cs" />
+    <Compile Include="Models\CheckInResponse.cs" />
+    <Compile Include="Models\SystemUser.cs" />
+    <Compile Include="DataSources\BaseRestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

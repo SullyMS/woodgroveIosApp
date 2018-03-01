@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CalServices.Dynamics.Messages;
 using CalServices.Dynamics.Services;
 using CalServices.Models;
@@ -12,7 +13,7 @@ namespace CalServices.DataSources
         {
         }
 
-        public async override System.Threading.Tasks.Task<bool> Load()
+        public async Task<bool> Load()
         {
             //DataServiceResponse<List<EntityStatus>> response = await GetData<List<EntityStatus>>(SERVICE_URL);
             //if (response.Success)

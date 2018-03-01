@@ -11,7 +11,7 @@ namespace CalServices.Dynamics.Base
 
         #region Properties
         public string EntityName { get; set; }
-        public RelatedEntity RelatedEntity { get; set; }
+        public RelatedEntity[] RelatedEntities { get; set; }
         public SelectFieldsList Fields { get; set; }
         public abstract string Operation { get; }
 
@@ -32,9 +32,20 @@ namespace CalServices.Dynamics.Base
             get
             {
                 string expand = string.Empty;
-                if (RelatedEntity != null)
+                if (RelatedEntities != null)
                 {
-                    expand += $"{RelatedEntity.Fields.SelectString})";
+                    expand = "&$expand=";
+                    for (int i = 0; i < RelatedEntities.Length; i++)
+                    {
+                        if (i == 0)
+                        {
+                            expand += RelatedEntities[i].ExpandString;
+                        }
+                        else
+                        {
+                            expand += $",{RelatedEntities[i].ExpandString}";
+                        }
+                    }
                 }
                 return expand;
             }

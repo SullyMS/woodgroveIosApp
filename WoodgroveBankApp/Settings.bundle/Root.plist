@@ -120,6 +120,28 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Scheduling Services</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Scheduler Service Base Url</string>
+			<key>Key</key>
+			<string>scheduler_base_url</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+			<key>DefaultValue</key>
+			<string>https://xrmdataservices.azurewebsites.net/api/</string>
+			<key>KeyboardType</key>
+			<string>URL</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

@@ -11,11 +11,19 @@ using UIKit;
 
 namespace WoodgroveBankApp
 {
-    [Register ("AccountTableViewController")]
-    partial class AccountTableViewController
+    [Register ("AccountsTableViewController")]
+    partial class AccountsTableViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationBar NavigationBar { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (NavigationBar != null) {
+                NavigationBar.Dispose ();
+                NavigationBar = null;
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
 using Foundation;
 using System;
 using UIKit;
-using CalServices.DataSources;
-using System.Threading.Tasks;
 using CalServices.Models;
 using System.Collections.Generic;
 using WoodgroveBankApp.Common;
@@ -20,6 +18,14 @@ namespace WoodgroveBankApp
 
 
         #region Methods
+        public void UpdateAppointmentsCount()
+        {
+            if (ApplicationData.Current.Appointments != null)
+            {
+                TabBarItem.BadgeValue = ApplicationData.Current.Appointments.Count.ToString();
+            }
+        }
+
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
@@ -35,8 +41,6 @@ namespace WoodgroveBankApp
             base.ViewDidLoad();
             //add the new appointment button
             NavigationItem.RightBarButtonItem = new UIBarButtonItem("New", UIBarButtonItemStyle.Plain, OnNewAppointment);
-            //load the appointments
-            _tableSource = new AppointmentsTableSource(ApplicationData.Current.Appointments);
         }
 
         private void OnNewAppointment(object sender, EventArgs e)
@@ -48,21 +52,17 @@ namespace WoodgroveBankApp
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            //only load if data has not been loaded yet
-            StopProgressBar();
+            //load the appointments
+            _tableSource = new AppointmentsTableSource(ApplicationData.Current.Appointments);
             UpdateTable();
+            UpdateAppointmentsCount();
         }
-    
-        private void StopProgressBar()
-        {
-            ProgressRing.StopAnimating();
-            ProgressRing.Hidden = true;
-        }
-
+       
         private void UpdateTable()
         {
             TableView.Source = _tableSource;
             TableView.ReloadData();
+            UpdateAppointmentsCount();
         }
         #endregion
 

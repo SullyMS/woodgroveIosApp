@@ -11,36 +11,36 @@ using UIKit;
 
 namespace WoodgroveBankApp
 {
-    [Register ("AboutScreenViewController")]
-    partial class AboutScreenViewController
+    [Register ("AccountCell")]
+    partial class AccountCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView ContentView { get; set; }
+        UIKit.UILabel AccountNumberLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UINavigationBar NavigationBar { get; set; }
+        UIKit.UILabel BalanceLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel VersonLabel { get; set; }
+        UIKit.UILabel ProductLabel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (ContentView != null) {
-                ContentView.Dispose ();
-                ContentView = null;
+            if (AccountNumberLabel != null) {
+                AccountNumberLabel.Dispose ();
+                AccountNumberLabel = null;
             }
 
-            if (NavigationBar != null) {
-                NavigationBar.Dispose ();
-                NavigationBar = null;
+            if (BalanceLabel != null) {
+                BalanceLabel.Dispose ();
+                BalanceLabel = null;
             }
 
-            if (VersonLabel != null) {
-                VersonLabel.Dispose ();
-                VersonLabel = null;
+            if (ProductLabel != null) {
+                ProductLabel.Dispose ();
+                ProductLabel = null;
             }
         }
     }

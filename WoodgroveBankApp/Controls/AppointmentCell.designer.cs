@@ -20,11 +20,19 @@ namespace WoodgroveBankApp
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel AdvisorLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel DateLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView IconImage { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel NumberLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -49,6 +57,11 @@ namespace WoodgroveBankApp
                 AddressLabel = null;
             }
 
+            if (AdvisorLabel != null) {
+                AdvisorLabel.Dispose ();
+                AdvisorLabel = null;
+            }
+
             if (DateLabel != null) {
                 DateLabel.Dispose ();
                 DateLabel = null;
@@ -57,6 +70,11 @@ namespace WoodgroveBankApp
             if (IconImage != null) {
                 IconImage.Dispose ();
                 IconImage = null;
+            }
+
+            if (NumberLabel != null) {
+                NumberLabel.Dispose ();
+                NumberLabel = null;
             }
 
             if (ReasonLabel != null) {

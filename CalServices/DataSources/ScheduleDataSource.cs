@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
 using CalServices.Models;
+using CalServices.Utils;
 using Newtonsoft.Json;
 
 namespace CalServices.DataSources
@@ -21,7 +21,7 @@ namespace CalServices.DataSources
         public ScheduleDataSource() {}
         #endregion
 
-        public async override System.Threading.Tasks.Task<bool> Load()
+        public async Task<bool> Load()
         {
             DataServiceResponse<ScheduleResults> response = await GetData<ScheduleResults>(ServiceUrl);
             if(response.Success){
@@ -34,10 +34,28 @@ namespace CalServices.DataSources
         public async Task<ConfirmationResponse> ConfirmAppointmentAsync(ConfirmationRequest Request)
         {
             string json = JsonConvert.SerializeObject(Request);
-            DataServiceResponse <ConfirmationResponse> seriveResponse = await PutData<ConfirmationResponse>(CONF_URL, json);
+            DataServiceResponse <ConfirmationResponse> seriveResponse = await PutData<ConfirmationResponse>(GetOperation(CONF_URL), json);
             return seriveResponse.Data;
         }
 
+        public async Task<CancelAppointmentResponse> CancelAppointmentAsync(CancelAppointmentRequest Request)
+        {
+            string json = JsonConvert.SerializeObject(Request);
+            DataServiceResponse<CancelAppointmentResponse> response = await PutData<CancelAppointmentResponse>(GetOperation(CANCEL_URL), json);
+            return response.Data;
+        }
+
+        public async Task<CheckInResponse> CheckInAsync(string ConfirmationNumber)
+        {
+            string operation = string.Format(CHECKIN_URL, ConfirmationNumber);
+            DataServiceResponse<CheckInResponse> response = await PutData<CheckInResponse>(GetOperation(operation), ConfirmationNumber);
+            return response.Data;
+        }
+
+        private string GetOperation(string RelativeOperation)
+            {
+            return $"{SchedulerSettings.Settings.ScheduleBaseUrl}{RelativeOperation}";
+        }
         #region Properties
         private DateTime StartDate { get; set; }
         private DateTime EndDate { get; set; }
@@ -52,6 +70,7 @@ namespace CalServices.DataSources
                 string sd = Uri.EscapeDataString($"{StartDate:M/d/yyyy}");
                 string ed = Uri.EscapeDataString($"{EndDate:M/d/yyyy}");
                 string url = string.Format(SERVICE_URL, BranchNumber, AppointmentType, AppointmentSubType, sd, ed, ClientLanguage);
+                url = GetOperation(url);
 #if DEBUG
                 System.Diagnostics.Debug.WriteLine(url);
 #endif
@@ -62,9 +81,10 @@ namespace CalServices.DataSources
         #endregion
 
         #region Constants
-        private const string SERVICE_URL = "https://xrmdataservices.azurewebsites.net/api/ScheduleEngine/GetBranchSchedule?BranchId={0}&AppointmentType={1}&AppointmentReason={2}&StartDate={3}&EndDate={4}&ClientLanguage={5}&UILanguageCode=1033&ListOnlyAvailable=true";
-        private const string CONF_URL = "https://xrmdataservices.azurewebsites.net/api/ScheduleEngine/ConfirmAppointment";
-        private const string CANCEL_URL = "";
+        private const string SERVICE_URL = "ScheduleEngine/GetBranchSchedule?BranchId={0}&AppointmentType={1}&AppointmentReason={2}&StartDate={3}&EndDate={4}&ClientLanguage={5}&UILanguageCode=1033&ListOnlyAvailable=true";
+        private const string CONF_URL = "ScheduleEngine/ConfirmAppointment";
+        private const string CANCEL_URL = "ScheduleEngine/CancelAppointment";
+        private const string CHECKIN_URL = "ScheduleEngine/AppointmentCheckIn?ConfirmationNumber={0}";
         #endregion
     }
 }

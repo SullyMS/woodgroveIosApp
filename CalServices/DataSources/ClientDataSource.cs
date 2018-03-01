@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CalServices.Dynamics.Messages;
 using CalServices.Dynamics.Services;
 using CalServices.Models;
-using Newtonsoft.Json;
 
 namespace CalServices.DataSources
 {
@@ -14,7 +12,7 @@ namespace CalServices.DataSources
             this.ClientId = ClientId;
         }
 
-        public async override Task<bool> Load()
+        public async Task<bool> Load()
         {
             D365CrudService service = new D365CrudService();
             RelatedEntity relatedBranch = new RelatedEntity()
@@ -29,7 +27,7 @@ namespace CalServices.DataSources
                 IsAlternateKey = true,
                 IdValue = ClientId,
                 KeyFieldName = Client.ALT_KEY,
-                RelatedEntity = relatedBranch
+                RelatedEntities = new RelatedEntity[1] { relatedBranch }
             };
 
             D365ServiceResponse response = await service.GetRecordById(request);
@@ -44,12 +42,9 @@ namespace CalServices.DataSources
         #region Properties
         public Client Client { get; private set; }
         public string ClientId { get; private set; }
-        public string ServiceUrl { get => string.Format(SERVICE_URL, ClientId); }
         #endregion
 
         #region Constants
-        //private const string SERVICE_URL = "https://xrmdataservices.azurewebsites.net/api/FSClient/GetFSIClient?ClientId={0}";
-        private const string SERVICE_URL = "http://scheduleservices.azurewebsites.net/api/Clients/{0}";
         #endregion
     }
 }

@@ -15,14 +15,7 @@ namespace CalServices.Dynamics.Messages
         {
             get
             {
-                if (RelatedEntity != null)
-                {
-                    return $"{EntityName.ToLower()}s?{SelectString}{Filter.QueryString}{RelatedEntity.ExpandString}";
-                }
-                else
-                {
-                    return $"{EntityName.ToLower()}s?{SelectString}{Filter.QueryString}";
-                }
+                return $"{EntityName.ToLower()}s?{SelectString}{Filter.QueryString}{RelatedString}";
             }
         }
         #endregion

@@ -33,10 +33,8 @@ namespace CalServices.Dynamics.Messages
                 //add select
                 operation += $"?{SelectString}";
                 // add any related entities
-                if (RelatedEntity != null)
-                {
-                    operation += RelatedEntity.ExpandString;
-                }
+                operation += RelatedString;
+
                 return operation;
             }
         }

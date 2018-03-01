@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CalServices.Models;
 using Foundation;
 
@@ -20,8 +19,10 @@ namespace WoodgroveBankApp.Common
             _defaults.Add(KEY_BASE_API_URL, "https://appointmentbooking.api.crm.dynamics.com/api/data/v8.2/");
             _defaults.Add(KEY_INSTANCE_URL, "https://appointmentbooking.crm.dynamics.com");
             _defaults.Add(KEY_CLIENT_NUMBER, "123456");
+            _defaults.Add(KEY_SCHEDULER_SRV_BASE_URL, "https://xrmdataservices.azurewebsites.net/api/");
         }
 
+        #region Properties
         public static ApplicationSettings Current => _current ?? (_current = new ApplicationSettings());
 
         public DynamicsSettings DynamicsSettings
@@ -46,6 +47,11 @@ namespace WoodgroveBankApp.Common
         {
             get => GetValue(KEY_CLIENT_NUMBER);
         }
+        public string SchedulerServicesBaseUrl
+        {
+            get => GetValue(KEY_SCHEDULER_SRV_BASE_URL);
+        }
+        #endregion
 
         private string GetValue(string Key){
             string value = NSUserDefaults.StandardUserDefaults.StringForKey(Key);
@@ -62,6 +68,7 @@ namespace WoodgroveBankApp.Common
         private const string KEY_BASE_API_URL = @"d365_base_api_url";
         private const string KEY_INSTANCE_URL = @"d365_org_url";
         private const string KEY_CLIENT_NUMBER = @"client_id_preference";
+        private const string KEY_SCHEDULER_SRV_BASE_URL = @"scheduler_base_url";
         #endregion
 
     }

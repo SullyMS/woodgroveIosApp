@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using WoodgroveBankApp.Common;
 using System.Linq;
+using CalServices.Utils;
 
 namespace WoodgroveBankApp
 {
@@ -32,6 +33,7 @@ namespace WoodgroveBankApp
             UINavigationBar.Appearance.TintColor = Common.ScreenColors.TitleBarFontColor;
             //load the application settings
             CalServices.Utils.KeyVault.Tokens.DynamicsSettings = ApplicationSettings.Current.DynamicsSettings;
+            SchedulerSettings.Settings.ScheduleBaseUrl = ApplicationSettings.Current.SchedulerServicesBaseUrl;
 
             Task loadClient = Task.Run(async () =>
             {
