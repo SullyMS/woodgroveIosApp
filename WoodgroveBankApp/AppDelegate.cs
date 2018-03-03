@@ -27,14 +27,23 @@ namespace WoodgroveBankApp
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+            //add settings notifcation
+            SetupAppSettings();
 
             //change the appearance of the title bar globally
             UINavigationBar.Appearance.BarTintColor = Common.ScreenColors.TitleBarBackground;
             UINavigationBar.Appearance.TintColor = Common.ScreenColors.TitleBarFontColor;
             //load the application settings
-            CalServices.Utils.KeyVault.Tokens.DynamicsSettings = ApplicationSettings.Current.DynamicsSettings;
-            SchedulerSettings.Settings.ScheduleBaseUrl = ApplicationSettings.Current.SchedulerServicesBaseUrl;
+            ApplicationSettings.Current.SyncSettings();
+            //load application data
+            LoadInitialData();
 
+
+            return true;
+        }
+
+        private void LoadInitialData()
+        {
             Task loadClient = Task.Run(async () =>
             {
                 //load the client
@@ -54,8 +63,6 @@ namespace WoodgroveBankApp
                 await ApplicationData.Current.LoadClientAppointments();
             });
             loadApps.Wait();
-
-            return true;
         }
 
         public override void OnResignActivation(UIApplication application)
@@ -84,9 +91,34 @@ namespace WoodgroveBankApp
             // If the application was previously in the background, optionally refresh the user interface.
         }
 
+        private NSObject observer;
         public override void WillTerminate(UIApplication application)
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+            if (observer != null)
+            {
+                NSNotificationCenter.DefaultCenter.RemoveObserver(observer);
+                observer = null;
+            }
+        }
+
+        private void SetupAppSettings()
+        {
+            NSDictionary appSettings = new NSDictionary();
+            NSUserDefaults.StandardUserDefaults.RegisterDefaults(appSettings);
+            //listen for changes
+            observer = NSNotificationCenter.DefaultCenter.AddObserver((NSString)"NSUserDefaultsDidChangeNotification", OnDefaultsChange);
+            ApplicationSettings.Current.SyncSettings();
+        }
+
+        private void OnDefaultsChange(NSNotification obj)
+        {
+            System.Diagnostics.Debug.WriteLine("defaults change");
+            ApplicationSettings.Current.SyncSettings();
+            LoadInitialData();
+            UIStoryboard storyboard = UIStoryboard.FromName("Main", null);
+            UIViewController controller =  storyboard.InstantiateInitialViewController();
+            controller.ShowViewController(controller, null);
         }
     }
 }

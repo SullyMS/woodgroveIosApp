@@ -32,115 +32,27 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Dynamics Connection</string>
+			<string>Environment Connection</string>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>ApplicationId</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>IsSecure</key>
-			<false/>
+			<string>PSMultiValueSpecifier</string>
 			<key>Key</key>
-			<string>d365_app_id</string>
-			<key>DefaultValue</key>
-			<string>5b5de57b-6005-48d8-b751-456686d37e20</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>environment_setting</string>
 			<key>Title</key>
-			<string>D365 Secret</string>
-			<key>Key</key>
-			<string>d365_secret</string>
-			<key>IsSecure</key>
-			<true/>
+			<string>Environment</string>
+			<key>Values</key>
+			<array>
+				<string>Appointment Booking</string>
+				<string>Retail</string>
+			</array>
 			<key>DefaultValue</key>
-			<string>Ho3+w/sqZSUdoLWBvj4LkhpYn/I8zsWioIdH6TK32Og=</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>oAuth End Point</string>
-			<key>Key</key>
-			<string>d365_oauth_endpoint</string>
-			<key>DefaultValue</key>
-			<string>https://login.microsoftonline.com/172e0c50-ade4-44ab-9a50-b86af9d7fc37/oauth2/token</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>IsSecure</key>
-			<false/>
-			<key>KeyboardType</key>
-			<string>URL</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>D365 API Base Url</string>
-			<key>Key</key>
-			<string>d365_base_api_url</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string>https://appointmentbooking.api.crm.dynamics.com/api/data/v8.2/</string>
-			<key>KeyboardType</key>
-			<string>URL</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Dynamics Instance Url</string>
-			<key>Key</key>
-			<string>d365_org_url</string>
-			<key>DefaultValue</key>
-			<string>https://appointmentbooking.crm.dynamics.com</string>
-			<key>KeyboardType</key>
-			<string>URL</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>Scheduling Services</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Scheduler Service Base Url</string>
-			<key>Key</key>
-			<string>scheduler_base_url</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string>https://xrmdataservices.azurewebsites.net/api/</string>
-			<key>KeyboardType</key>
-			<string>URL</string>
+			<string>Retail</string>
+			<key>Titles</key>
+			<array>
+				<string>Appointment Booking</string>
+				<string>Retail</string>
+			</array>
 		</dict>
 	</array>
 	<key>StringsTable</key>
