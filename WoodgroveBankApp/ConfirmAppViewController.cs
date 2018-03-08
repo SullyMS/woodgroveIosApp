@@ -53,22 +53,20 @@ namespace WoodgroveBankApp
         {
             CancelButton.Enabled = false;
             ConfirmButton.Enabled = false;
-            //ProgressRing.Hidden = false;
-            //ProgressRing.StartAnimating();
             //open a progress alert
             ProgressAlert = UIAlertController.Create("Confirm Appointment", "Confirming appointment please wait...", UIAlertControllerStyle.Alert);
             PresentViewController(ProgressAlert, true, null);
 
             Task.Run(async () =>
             {
-                ConfirmationResponse response = await ConfirmAppointmentAsync();
+                DataServiceResponse<ConfirmationResponse> response = await ConfirmAppointmentAsync();
                 if (response == null)
                 {
                     ShowError(response);
                 }
                 else
                 {
-                    if (response.Result == 1)
+                    if (response.Success)
                     {
                         //refresh appointment data
                         ApplicationData.Current.GetClientAppointments();
@@ -84,13 +82,13 @@ namespace WoodgroveBankApp
             });
         }
 
-        private void ShowSuccess(ConfirmationResponse Response)
+        private void ShowSuccess(DataServiceResponse<ConfirmationResponse> Response)
         {
             
             InvokeOnMainThread(() =>
             {
                 ProgressAlert.DismissViewController(true, null);
-                var alert = UIAlertController.Create("Appointment Confirmed", $"Your appointment is confirmed. Your confirmation number is: {Response.ConfirmationNumber}", UIAlertControllerStyle.Alert);
+                var alert = UIAlertController.Create("Appointment Confirmed", $"Your appointment is confirmed. Your confirmation number is: {Response?.Data?.ConfirmationNumber}", UIAlertControllerStyle.Alert);
 
                 alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, OnConfirmComplete));
 
@@ -109,13 +107,13 @@ namespace WoodgroveBankApp
             }
         }
 
-        private void ShowError(ConfirmationResponse Response)
+        private void ShowError(DataServiceResponse<ConfirmationResponse> Response)
         {
             
             InvokeOnMainThread(() =>
             {
                 ProgressAlert.DismissViewController(true, null);
-                var alert = UIAlertController.Create("Schedule Error", $"Unable to confirm appointment: {Response?.ErrorMessage}", UIAlertControllerStyle.Alert);
+                var alert = UIAlertController.Create("Schedule Error", $"Unable to confirm appointment: {Response.ErrorMessage}", UIAlertControllerStyle.Alert);
                 alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                 PresentViewController(alert, true, null);
                 CancelButton.Enabled = true;
@@ -123,7 +121,7 @@ namespace WoodgroveBankApp
             });
         }
 
-        private async Task<ConfirmationResponse> ConfirmAppointmentAsync()
+        private async Task<DataServiceResponse<ConfirmationResponse>> ConfirmAppointmentAsync()
         {
             ScheduleDataSource ds = new ScheduleDataSource();
             Appointment a = ApplicationData.Current.NewAppointment;
@@ -145,7 +143,7 @@ namespace WoodgroveBankApp
                 AdvisorComments = string.Empty,
                 ClientComments = string.Empty
             };
-            ConfirmationResponse response = await ds.ConfirmAppointmentAsync(request);
+            DataServiceResponse<ConfirmationResponse> response = await ds.ConfirmAppointmentAsync(request);
             return response;
         }
         #endregion

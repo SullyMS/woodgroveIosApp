@@ -64,17 +64,17 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="94617" translatesAutoresizingMaskIntoConstraints="NO" distribution="equalSpacing" spacing="12" fixedFrame="YES">
-                                        <rect key="frame" x="20" y="20" width="286.5" height="194.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="94617" translatesAutoresizingMaskIntoConstraints="NO" distribution="fillProportionally" spacing="8">
+                                        <rect key="frame" x="20" y="16" width="339" height="521"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" id="94627" translatesAutoresizingMaskIntoConstraints="NO" spacing="12" distribution="fillProportionally">
-                                                <rect key="frame" x="0.0" y="0.0" width="286.5" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="339" height="48"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="94628" translatesAutoresizingMaskIntoConstraints="NO" image="WoodIcon">
-                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="48"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Woodgrove Bank App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94629" translatesAutoresizingMaskIntoConstraints="NO">
-                                                        <rect key="frame" x="44" y="0.0" width="242.5" height="32"/>
+                                                        <rect key="frame" x="50" y="0.0" width="289" height="48"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <color key="textColor" colorSpace="calibratedRGB" red="0.062745098039215685" green="0.49803921568627452" blue="0.00392156862745098" alpha="1"/>
                                                         <nil key="highlightedColor"/>
@@ -82,43 +82,82 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94626" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="0.0" y="44" width="286.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="56" width="339" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microsoft Financial Services Demos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94631" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="0.0" y="76.5" width="286.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="95" width="339" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Written By: John Sullivan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94632" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="0.0" y="109" width="286.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="134" width="339" height="30.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="john.sullivan@microsoft.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94633" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="0.0" y="141.5" width="286.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="172.5" width="339" height="31"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="February 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94634" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="0.0" y="174" width="286.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="211.5" width="339" height="30.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected To:" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="109953" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
+                                                <rect key="frame" x="0.0" y="250" width="339" height="24.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="109954" translatesAutoresizingMaskIntoConstraints="NO" text="D365:" numberOfLines="2">
+                                                <rect key="frame" x="0.0" y="282.5" width="339" height="24"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="API:" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="110616" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
+                                                <rect key="frame" x="0.0" y="314.5" width="339" height="24"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CalService:" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="109955" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
+                                                <rect key="frame" x="0.0" y="346.5" width="339" height="24"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="111299" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <rect key="frame" x="0.0" y="378.5" width="339" height="45"/>
+                                                <state key="normal" title="Show Errors"/>
+                                                <connections>
+                                                    <segue id="118283" destination="115411" kind="show"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="118978" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <rect key="frame" x="0.0" y="431.5" width="339" height="89.5"/>
+                                                <state key="normal" title="Reload Application Data"/>
+                                                <connections>
+                                                    <action selector="ReloadButton_TouchUpInside:" destination="1119" id="118979" eventType="touchUpInside"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="95880" translatesAutoresizingMaskIntoConstraints="NO" image="MicrosoftLogo" fixedFrame="YES">
-                                        <rect key="frame" x="68" y="410" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint id="120350" firstItem="95876" firstAttribute="bottom" secondItem="94617" secondAttribute="bottom" constant="16"/>
+                                    <constraint id="120351" firstItem="95876" firstAttribute="trailing" secondItem="94617" secondAttribute="trailing" constant="16"/>
+                                    <constraint id="120352" firstItem="94617" firstAttribute="leading" secondItem="95876" secondAttribute="leading" constant="20"/>
+                                    <constraint id="120353" firstItem="94617" firstAttribute="top" secondItem="95876" secondAttribute="top" constant="16"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <constraints>
@@ -137,6 +176,12 @@
                         <outlet property="NavigationBar" destination="94612" id="name-outlet-94612"/>
                         <outlet property="VersonLabel" destination="94626" id="name-outlet-94626"/>
                         <outlet property="ContentView" destination="95876" id="name-outlet-95876"/>
+                        <outlet property="ConnectedToLabel" destination="109953" id="name-outlet-109953"/>
+                        <outlet property="CrmLabel" destination="109954" id="name-outlet-109954"/>
+                        <outlet property="CalServiceLabel" destination="109955" id="name-outlet-109955"/>
+                        <outlet property="ApiLabel" destination="110616" id="name-outlet-110616"/>
+                        <outlet property="ErrorButton" destination="111299" id="name-outlet-111299"/>
+                        <outlet property="ReloadButton" destination="118978" id="name-outlet-118978"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1121" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1276,6 +1321,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49800" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3033" y="569"/>
+        </scene>
+        <scene sceneID="111304">
+            <objects>
+                <tableViewController id="111305" sceneMemberID="viewController" customClass="ErrorsTableViewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="111306">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="111309" style="IBUITableViewCellStyleSubtitle" textLabel="111554" detailTextLabel="111555" reuseIdentifier="ErrorCell" rowHeight="160" accessoryType="detailButton">
+                                <rect key="frame" x="0.0" y="28" width="375" height="160"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="111309" id="111310">
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="159.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="111554">
+                                            <rect key="frame" x="16" y="60" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" id="111555" numberOfLines="4" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preservesSuperviewLayoutMargins="YES">
+                                            <rect key="frame" x="16" y="83.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <size key="shadowOffset" width="4" height="4"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="111305" id="111307"/>
+                            <outlet property="delegate" destination="111305" id="111308"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem title="Application Errors" id="115478" key="navigationItem"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="111311" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1002" y="1471"/>
+        </scene>
+        <scene sceneID="115410">
+            <objects>
+                <navigationController id="115411" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="115413">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="115479" destination="111305" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="115414" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="501" y="1461"/>
         </scene>
     </scenes>
     <resources>

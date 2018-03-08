@@ -25,7 +25,16 @@ namespace WoodgroveBankApp
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //
+            //setup pull to refresh
+            UIRefreshControl refreshControl = new UIRefreshControl();
+            refreshControl.ValueChanged += async (sender, e) => {
+                await LoadScheduleAsync();
+                BeginInvokeOnMainThread(() => {
+                    TableView.ReloadData();
+                    refreshControl.EndRefreshing();
+                });
+            };
+            TableView.RefreshControl = refreshControl;
         }
 
         public override void ViewWillAppear(bool animated)
@@ -78,6 +87,7 @@ namespace WoodgroveBankApp
             ProgressRing.StartAnimating();
             Task.Run(async () =>
             {
+                Schedule = null;
                 await LoadScheduleAsync();
 
             });
@@ -87,28 +97,48 @@ namespace WoodgroveBankApp
         {
             if (Schedule == null)
             {
-                DataSource = new ScheduleDataSource(StartDate, EndDate,
-                                                    ApplicationData.Current.NewAppointment.BranchNumber,
-                                                    ApplicationData.Current.NewAppointment.AppointmentType.Value, 
-                                                    ApplicationData.Current.NewAppointment.AppointmentSubType.Value,
-                                                    ApplicationData.Current.Client.PrimaryLanguage);
-                if (await DataSource.Load())
+                DataSource = new ScheduleDataSource();
+                Appointment a = ApplicationData.Current.NewAppointment;
+                DataServiceResponse<ScheduleResults> response = await DataSource.GetAvailableTimes(StartDate,
+                                                                                                    EndDate, a.BranchNumber,
+                                                                                                    a.AppointmentType.Value,
+                                                                                                    a.AppointmentSubType.Value,
+                                                                                                    a.AppointmentLanguage);
+                if (response.Success)
                 {
-                    Schedule = DataSource.Schedule;
-                    foreach (ScheduleResult r in Schedule.ScheduleDays)
+                    if (string.IsNullOrEmpty(response.Data.ErrorMessage))
                     {
-                        if (r.ScheduleDate.Date.Equals(SelectedDay.Date))
+                        Schedule = response.Data;
+                        foreach (ScheduleResult r in Schedule.ScheduleDays)
                         {
-                            ReloadTable(new TimeSlotSource(r.TimeSlots));
-                            break;
+                            if (r.ScheduleDate.Date.Equals(SelectedDay.Date))
+                            {
+                                ReloadTable(new TimeSlotSource(r.TimeSlots));
+                                break;
+                            }
                         }
+                        InvokeOnMainThread(() =>
+                        {
+                            ProgressRing.StopAnimating();
+                        });
+                    }
+                    else
+                    {
+                        //scheduling system error
+                        InvokeOnMainThread(() =>
+                        {
+                            ProgressRing.StopAnimating();
+                            var alert = UIAlertController.Create("Schedule Engine Error", $"{response.Data.ErrorMessage}", UIAlertControllerStyle.Alert);
+                            alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+                            PresentViewController(alert, true, null);
+                        });
                     }
                 }else{
                     //error
                     InvokeOnMainThread(() =>
                     {
                         ProgressRing.StopAnimating();
-                        var alert = UIAlertController.Create("Error", "Load Error", UIAlertControllerStyle.Alert);
+                        var alert = UIAlertController.Create("Error", $"Load Error: {response.ErrorMessage}", UIAlertControllerStyle.Alert);
                         alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                         PresentViewController(alert, true, null);
                     });

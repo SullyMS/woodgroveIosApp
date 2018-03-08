@@ -7,6 +7,7 @@ using UIKit;
 using WoodgroveBankApp.Common;
 using System.Linq;
 using CalServices.Utils;
+using CalServices.Dynamics.Messages;
 
 namespace WoodgroveBankApp
 {
@@ -44,25 +45,13 @@ namespace WoodgroveBankApp
 
         private void LoadInitialData()
         {
-            Task loadClient = Task.Run(async () =>
+            Task loadData = Task.Run(async () =>
             {
-                //load the client
-                ClientDataSource clientds = new ClientDataSource(ApplicationSettings.Current.ClientNumber);
-                if (await clientds.Load())
-                {
-                    ApplicationData.Current.Client = clientds.Client;
-
-                }
+                await ApplicationData.Current.LoadApplicationData();
             });
-            //wait for the client data
-            loadClient.Wait();
-            ApplicationData.Current.GetAppointmentTypes();
 
-            Task loadApps = Task.Run(async () =>
-            {
-                await ApplicationData.Current.LoadClientAppointments();
-            });
-            loadApps.Wait();
+            //wait for data to load
+            loadData.Wait();
         }
 
         public override void OnResignActivation(UIApplication application)

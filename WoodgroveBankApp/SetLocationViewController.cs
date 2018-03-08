@@ -29,8 +29,9 @@ namespace WoodgroveBankApp
 
         private void OnCancel(object sender, EventArgs e)
         {
-            UINavigationController controller = Storyboard.InstantiateViewController("AppsViewController") as UINavigationController;
-            this.ShowViewController(controller, this);
+            //UINavigationController controller = Storyboard.InstantiateViewController("AppsViewController") as UINavigationController;
+            //this.ShowViewController(controller, this);
+            DismissViewController(true, null);
         }
 
         public override void ViewWillAppear(bool animated)

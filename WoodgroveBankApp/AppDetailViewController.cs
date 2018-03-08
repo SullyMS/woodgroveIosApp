@@ -84,17 +84,17 @@ namespace WoodgroveBankApp
 
             Task.Run(async () =>
             {
-                CancelAppointmentResponse response = await CancelAppointmentAsync();
+                DataServiceResponse<CancelAppointmentResponse> response = await CancelAppointmentAsync();
                 if (response == null)
                 {
                     ShowError(response);
                 }
                 else
                 {
-                    if (response.Result == 1)
+                    if (response.Success)
                     {
                         //success
-                        ShowSuccess(response);
+                        ShowSuccess();
                     }
                     else
                     {
@@ -120,7 +120,7 @@ namespace WoodgroveBankApp
             PresentViewController(alert, true, null);
         }
 
-        private void ShowSuccess(CancelAppointmentResponse Response)
+        private void ShowSuccess()
         {
 
             InvokeOnMainThread(() =>
@@ -140,7 +140,7 @@ namespace WoodgroveBankApp
             NavigationController.PopViewController(true);
         }
 
-        private async Task<CancelAppointmentResponse> CancelAppointmentAsync()
+        private async Task<DataServiceResponse<CancelAppointmentResponse>> CancelAppointmentAsync()
         {
             CancelAppointmentRequest request = new CancelAppointmentRequest()
             {
@@ -149,8 +149,8 @@ namespace WoodgroveBankApp
                 IsRequestFromCrm = false
             };
             ScheduleDataSource ds = new ScheduleDataSource();
-            CancelAppointmentResponse response = await ds.CancelAppointmentAsync(request);
-            if (response.Result == 1)
+            DataServiceResponse<CancelAppointmentResponse> response = await ds.CancelAppointmentAsync(request);
+            if (response.Success)
             {
                 //refresh the appointments
                 await ApplicationData.Current.RefreshAppointmentsAsync();
@@ -158,13 +158,13 @@ namespace WoodgroveBankApp
             return response;
         }
 
-        private void ShowError(CancelAppointmentResponse Response)
+        private void ShowError(DataServiceResponse<CancelAppointmentResponse> Response)
         {
 
             InvokeOnMainThread(() =>
             {
                 ProgressAlert.DismissViewController(true, null);
-                var alert = UIAlertController.Create("Schedule Error", $"Unable to cancel appointment: {Response?.InnerErrorMessage}", UIAlertControllerStyle.Alert);
+                var alert = UIAlertController.Create("Schedule Error", $"Unable to cancel appointment: {Response.ErrorMessage}", UIAlertControllerStyle.Alert);
                 alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                 PresentViewController(alert, true, null);
                 CancelButton.Enabled = true;
@@ -172,7 +172,7 @@ namespace WoodgroveBankApp
             });
         }
 
-        private void ShowCheckInError(CheckInResponse Response)
+        private void ShowCheckInError(DataServiceResponse<CheckInResponse> Response)
         {
 
             InvokeOnMainThread(() =>
@@ -186,7 +186,7 @@ namespace WoodgroveBankApp
             });
         }
 
-        private void ShowCheckInSuccess(CheckInResponse Response)
+        private void ShowCheckInSuccess()
         {
 
             InvokeOnMainThread(() =>
@@ -222,17 +222,17 @@ namespace WoodgroveBankApp
 
             Task.Run(async () =>
             {
-                CheckInResponse response = await CheckInAsync();
+                DataServiceResponse<CheckInResponse> response = await CheckInAsync();
                 if (response == null)
                 {
                     ShowCheckInError(response);
                 }
                 else
                 {
-                    if (response.Result == 1)
+                    if (response.Success)
                     {
                         //success
-                        ShowCheckInSuccess(response);
+                        ShowCheckInSuccess();
                     }
                     else
                     {
@@ -243,11 +243,11 @@ namespace WoodgroveBankApp
             });
         }
 
-        private async Task<CheckInResponse> CheckInAsync()
+        private async Task<DataServiceResponse<CheckInResponse>> CheckInAsync()
         {
             ScheduleDataSource ds = new ScheduleDataSource();
-            CheckInResponse response = await ds.CheckInAsync(Appointment.ConfirmationNumber);
-            if (response.Result == 1)
+            DataServiceResponse<CheckInResponse> response = await ds.CheckInAsync(Appointment.ConfirmationNumber);
+            if (response.Success)
             {
                 //refresh the appointments
                 await ApplicationData.Current.RefreshAppointmentsAsync();

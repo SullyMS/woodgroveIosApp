@@ -29,6 +29,8 @@ namespace CalServices.Dynamics.Messages
         #endregion
 
         #region Properties
+        public bool Success => (Result == ServiceResult.Success);
+
         public string ErrorMessage
         {
             get

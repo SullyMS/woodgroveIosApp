@@ -9,6 +9,7 @@ namespace CalServices.Utils
     {
         #region Members
         private static KeyVault _keys = null;
+        private DynamicsSettings _settings = null;
         #endregion
 
         #region Constants
@@ -27,7 +28,15 @@ namespace CalServices.Utils
         public static KeyVault Tokens => _keys ?? (_keys = new KeyVault());
 
         private string ServiceToken { get; set; }
-        public DynamicsSettings DynamicsSettings { get; set; }
+        public DynamicsSettings DynamicsSettings
+        {
+            get => _settings;
+            set
+            {
+                _settings = value;
+                ServiceToken = string.Empty;
+            }
+        }
         #endregion
 
         #region Methods

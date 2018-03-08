@@ -33,6 +33,17 @@ namespace WoodgroveBankApp
             base.ViewDidLoad();
             //add the new appointment button
             NavigationItem.RightBarButtonItem = new UIBarButtonItem("New", UIBarButtonItemStyle.Plain, OnNewAppointment);
+            //add support for pull to refresh
+            UIRefreshControl refreshControl = new UIRefreshControl();
+            refreshControl.ValueChanged += async (sender, e) => {
+                await ApplicationData.Current.LoadClientAppointments();
+                BeginInvokeOnMainThread(() => {
+                    UpdateTable();
+                    refreshControl.EndRefreshing();
+                });
+            };
+            this.RefreshControl = refreshControl;
+
         }
 
         private void OnNewAppointment(object sender, EventArgs e)
@@ -44,14 +55,18 @@ namespace WoodgroveBankApp
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            //load the appointments
-            _tableSource = new AppointmentsTableSource(ApplicationData.Current.Appointments);
             UpdateTable();
         }
 
         private void UpdateTable()
         {
+            //load the appointments
+            _tableSource = new AppointmentsTableSource(ApplicationData.Current.Appointments);
             TableView.Source = _tableSource;
+            //update appointments count
+            NewAppNavController t = (NewAppNavController)TabBarController.ViewControllers[1];
+            t?.UpdateAppointmentsCount();
+            //reload the tableview
             TableView.ReloadData();
         }
         #endregion

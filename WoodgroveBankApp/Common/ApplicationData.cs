@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CalServices.DataSources;
+using CalServices.Dynamics.Messages;
 using CalServices.Models;
 using CalServices.Utils;
 using Foundation;
@@ -11,7 +12,10 @@ namespace WoodgroveBankApp.Common
 {
     public class ApplicationData
     {
+        #region Members
         private Client _client = null;
+        private List<AppError> _errors = null;
+        #endregion
 
         public ApplicationData() { }
 
@@ -22,7 +26,7 @@ namespace WoodgroveBankApp.Common
         public Client Client
         {
             get => _client;
-            set
+            private set
             {
                 _client = value;
                 HomeBranch = _client.Branch;
@@ -32,9 +36,19 @@ namespace WoodgroveBankApp.Common
         public Branch HomeBranch { get; private set; }
         public List<D365Appointment> Appointments { get; private set; }
         public List<AppointmentReason> AppointmentTypes { get; private set; }
+        public List<AppError> Errors => _errors ?? (_errors = new List<AppError>());
+        public bool HasErrors => Errors.Count > 0;
         #endregion
 
         #region Methods
+        public async Task LoadApplicationData()
+        {
+            Errors.Clear();
+            await LoadClient();
+            await LoadClientAppointments();
+            await Current.GetAppointmentTypes();
+        }
+
         public void GetClientAppointments()
         {
             Appointments?.Clear();
@@ -43,7 +57,21 @@ namespace WoodgroveBankApp.Common
                 AppointmentsDataSource ds = new AppointmentsDataSource();
                 Task dataTask = Task.Run(async () =>
                 {
-                    Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
+                    D365ServiceResponse response = await ds.GetClientUpcomingAppointments(Client.Id);
+                    if (response.Success)
+                    {
+                        Appointments = response.GetData<List<D365Appointment>>();
+                    }
+                    else
+                    {
+                        AppError error = new AppError()
+                        {
+                            ClassName = nameof(ApplicationData),
+                            Method = nameof(GetClientAppointments),
+                            ErrorMessage = response.ErrorMessage
+                        };
+                        Errors.Add(error);
+                    }
                 });
             }
         }
@@ -54,19 +82,44 @@ namespace WoodgroveBankApp.Common
             if (Client != null)
             {
                 AppointmentsDataSource ds = new AppointmentsDataSource();
-                Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
+                D365ServiceResponse response = await ds.GetClientUpcomingAppointments(Client.Id);
+                if (response.Success)
+                {
+                    Appointments = response.GetData<List<D365Appointment>>();
+                }
+                else
+                {
+                    AppError error = new AppError()
+                    {
+                        ClassName = nameof(ApplicationData),
+                        Method = nameof(GetClientAppointments),
+                        ErrorMessage = response.ErrorMessage
+                    };
+                    Errors.Add(error);
+                }
             }
         }
 
-        public void GetAppointmentTypes()
+        public async Task GetAppointmentTypes()
         {
             ApptReasonDataSource ds = new ApptReasonDataSource();
-            Task dataTask = Task.Run(async () =>
+            D365ServiceResponse response = await ds.GetAppointmentTypes();
+
+            if (response.Success)
             {
-                await ds.Load();    
-                ReferenceData.Data.SetReferenceAppointmentTypes(ds.AppointmentTypes);
-                AppointmentTypes = ds.AppointmentTypes;
-            });
+                ReferenceData.Data.SetReferenceAppointmentTypes(response.GetData<List<AppointmentReason>>());
+                AppointmentTypes = response.GetData<List<AppointmentReason>>();
+            }
+            else
+            {
+                AppError error = new AppError()
+                {
+                    ClassName = nameof(ApplicationData),
+                    Method = nameof(GetAppointmentTypes),
+                    ErrorMessage = response.ErrorMessage
+                };
+                Errors.Add(error);
+            }
 
         }
 
@@ -75,10 +128,37 @@ namespace WoodgroveBankApp.Common
             Appointments?.Clear();
             if (Client != null)
             {
-                AppointmentsDataSource ds = new AppointmentsDataSource();
-                Appointments = await ds.GetClientUpcomingAppointments(Client.Id);
+                await LoadClientAppointments();
+            }
+        }
+
+        public async Task LoadClient()
+        {
+            //load the client
+            ClientDataSource clientds = new ClientDataSource();
+            D365ServiceResponse response = await clientds.GetClientByClientNumber(ApplicationSettings.Current.ClientNumber);
+            if (response.Success)
+            {
+                Client = response.GetData<Client>();
+            }
+            else
+            {
+                AppError error = new AppError()
+                {
+                    ClassName = nameof(ApplicationData),
+                    Method = nameof(LoadClient),
+                    ErrorMessage = response.ErrorMessage
+                };
+                Errors.Add(error);
             }
         }
         #endregion
+    }
+
+    public class AppError
+    {
+        public string ClassName { get; set; }
+        public string Method { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

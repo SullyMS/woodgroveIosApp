@@ -10,5 +10,6 @@
         public string ApiBaseUrl { get; set; }
         public string InstanceUrl { get; set; }
         public string CalServicesUrl { get; set; }
+        public string EnvironmentName { get; set; }
     }
 }

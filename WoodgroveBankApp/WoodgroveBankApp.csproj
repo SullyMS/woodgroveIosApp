@@ -228,6 +228,10 @@
     <Compile Include="AccountCell.designer.cs">
       <DependentUpon>AccountCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="ErrorsTableViewController.cs" />
+    <Compile Include="ErrorsTableViewController.designer.cs">
+      <DependentUpon>ErrorsTableViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalServices\CalServices.csproj">

@@ -7,12 +7,9 @@ namespace CalServices.DataSources
 {
     public class ClientDataSource : BaseDataSource
     {
-        public ClientDataSource(string ClientId)
-        {
-            this.ClientId = ClientId;
-        }
+        public ClientDataSource() { }
 
-        public async Task<bool> Load()
+        public async Task<D365ServiceResponse> GetClientByClientNumber(string ClientNumber)
         {
             D365CrudService service = new D365CrudService();
             RelatedEntity relatedBranch = new RelatedEntity()
@@ -25,23 +22,17 @@ namespace CalServices.DataSources
                 EntityName = Client.ENTITY_NAME,
                 Fields = new SelectFieldsList(Client.FIELDS),
                 IsAlternateKey = true,
-                IdValue = ClientId,
+                IdValue = ClientNumber,
                 KeyFieldName = Client.ALT_KEY,
                 RelatedEntities = new RelatedEntity[1] { relatedBranch }
             };
 
             D365ServiceResponse response = await service.GetRecordById(request);
-            if(response.Result == ServiceResult.Success){
-                Client = response.GetData<Client>();
-                return true;
-            }
-            return false;
+            return response;
         }
 
 
         #region Properties
-        public Client Client { get; private set; }
-        public string ClientId { get; private set; }
         #endregion
 
         #region Constants

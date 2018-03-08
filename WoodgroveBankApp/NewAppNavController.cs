@@ -36,13 +36,19 @@ namespace WoodgroveBankApp
         {
             if (ApplicationData.Current.Appointments != null)
             {
-                TabBarItem.BadgeColor = UIColor.Red;
-                TabBarItem.BadgeValue = ApplicationData.Current.Appointments.Count.ToString();
+                if (ApplicationData.Current.Appointments.Count > 0)
+                {
+                    TabBarItem.BadgeColor = UIColor.Red;
+                    TabBarItem.BadgeValue = ApplicationData.Current.Appointments.Count.ToString();
+                }
+                else
+                {
+                    TabBarItem.BadgeValue = null;
+                }
             }
             else
             {
                 TabBarItem.BadgeValue = null;
-
             }
         }
 

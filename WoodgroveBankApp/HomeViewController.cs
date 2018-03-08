@@ -31,12 +31,8 @@ namespace WoodgroveBankApp
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            //set the appointment count
-            NewAppNavController t = (NewAppNavController)TabBarController.ViewControllers[1];
-            t.UpdateAppointmentsCount();
-
             //load the client data
-            if (ApplicationData.Current.Client == null)
+            if (ApplicationData.Current.HasErrors)
             {
                 ShowErrorState();
             }
@@ -44,6 +40,9 @@ namespace WoodgroveBankApp
             {
                 UpdateClientData();
                 StopLoadState();
+                //set the appointment count
+                NewAppNavController t = (NewAppNavController)TabBarController.ViewControllers[1];
+                t?.UpdateAppointmentsCount();
             }
         }
 
@@ -65,7 +64,7 @@ namespace WoodgroveBankApp
 
         private void ShowErrorState()
         {
-            WelcomeLabel.Text = "Error";
+            WelcomeLabel.Text = $"Errors {ApplicationData.Current.Errors.Count}";
         }
 
         private void StopLoadState()

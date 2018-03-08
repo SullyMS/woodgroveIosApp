@@ -10,6 +10,8 @@ namespace CalServices.DataSources
         #region Properties
         public bool Success { get; set; }
         public T Data{ get; set; }
+        public ErrorType ErrorType { get; set; }
+        public string ErrorMessage { get; set; }
         #endregion
     }
 

@@ -16,16 +16,8 @@ namespace CalServices.DataSources
 
         public AppointmentsDataSource() { }
 
-        #region Properties
-        public List<Appointment> Appointments
-        {
-            get;
-            private set;
-        }
-        #endregion
-
         #region Methods
-        public async Task<List<D365Appointment>> GetClientUpcomingAppointments(string RecordId)
+        public async Task<D365ServiceResponse> GetClientUpcomingAppointments(string RecordId)
         {
             D365CrudService service = new D365CrudService();
             QueryFilter filter = new QueryFilter();
@@ -51,11 +43,7 @@ namespace CalServices.DataSources
                 RelatedEntities = new RelatedEntity[2] { branch, advisor }
             };
             D365ServiceResponse response = await service.RetreiveMultiple(request);
-            if (response.Result == ServiceResult.Success)
-            {
-                return response.GetData <List<D365Appointment>>();
-            }
-            return new List<D365Appointment>();
+            return response;
         }
         #endregion
 

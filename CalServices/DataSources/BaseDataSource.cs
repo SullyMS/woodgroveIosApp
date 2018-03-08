@@ -19,8 +19,8 @@ namespace CalServices.DataSources
         }
 
         #region Properties
-        public ErrorType ErrorType { get; private set; }
-        public string ErrorMessage { get; private set; }
+        //public ErrorType ErrorType { get; private set; }
+        //public string ErrorMessage { get; private set; }
         public DataSourceStatus Status
         {
             get => _status;
@@ -49,22 +49,23 @@ namespace CalServices.DataSources
                     DataServiceResponse<T> response = new DataServiceResponse<T>()
                     {
                         Success = false,
-                        Data = default(T)
+                        Data = default(T),
+                        ErrorMessage = json
                     };
-                    ErrorType = ErrorType.OtherHttp;
-                    ErrorMessage = json;
+                    response.ErrorType = ErrorType.OtherHttp;
+                    //ErrorMessage = json;
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        ErrorType = ErrorType.NotFound;
+                        response.ErrorType = ErrorType.NotFound;
                     }
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                     {
-                        ErrorType = ErrorType.InternalServerError;
+                        response.ErrorType = ErrorType.InternalServerError;
                     }
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized ||
                        httpResponse.StatusCode == System.Net.HttpStatusCode.Forbidden)
                     {
-                        ErrorType = ErrorType.NotAuthorized;
+                        response.ErrorType = ErrorType.NotAuthorized;
                     }
 
                     return response;
@@ -78,8 +79,8 @@ namespace CalServices.DataSources
                         Success = true,
                         Data = (T)Convert.ChangeType(data, typeof(T))
                     };
-                    ErrorType = ErrorType.None;
-                    ErrorMessage = string.Empty;
+                    response.ErrorType = ErrorType.None;
+                    response.ErrorMessage = string.Empty;
                     Status = DataSourceStatus.Loaded;
 
                     return response;
@@ -93,8 +94,8 @@ namespace CalServices.DataSources
                     Success = false,
                     Data = default(T)
                 };
-                ErrorType = ErrorType.UnExpected;
-                ErrorMessage = ex.Message;
+                response.ErrorType = ErrorType.UnExpected;
+                response.ErrorMessage = ex.Message;
                 Status = DataSourceStatus.Error;
 
                 return response;
@@ -113,14 +114,14 @@ namespace CalServices.DataSources
                 request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 request.Content = new StringContent(JsonData, System.Text.Encoding.UTF8, "application/json");
 #if DEBUG
-                System.Diagnostics.Debug.WriteLine($"Appointment Confirmation Request: {JsonData}");
+                System.Diagnostics.Debug.WriteLine($"Request: {JsonData}");
 #endif
 
                 HttpResponseMessage httpResponse = await client.SendAsync(request);
                 string json = await httpResponse.Content.ReadAsStringAsync();
 
 #if DEBUG
-                System.Diagnostics.Debug.WriteLine($"Appointment Confirmation Response: {json}");
+                System.Diagnostics.Debug.WriteLine($"Response: {json}");
 #endif
 
                 if (httpResponse.IsSuccessStatusCode == false)
@@ -130,22 +131,23 @@ namespace CalServices.DataSources
                     DataServiceResponse<T> response = new DataServiceResponse<T>()
                     {
                         Success = false,
-                        Data = default(T)
+                        Data = default(T),
+                        ErrorMessage = json
                     };
-                    ErrorType = ErrorType.OtherHttp;
-                    ErrorMessage = json;
+                    response.ErrorType = ErrorType.OtherHttp;
+                    //ErrorMessage = json;
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        ErrorType = ErrorType.NotFound;
+                        response.ErrorType = ErrorType.NotFound;
                     }
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                     {
-                        ErrorType = ErrorType.InternalServerError;
+                        response.ErrorType = ErrorType.InternalServerError;
                     }
                     if (httpResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized ||
                        httpResponse.StatusCode == System.Net.HttpStatusCode.Forbidden)
                     {
-                        ErrorType = ErrorType.NotAuthorized;
+                        response.ErrorType = ErrorType.NotAuthorized;
                     }
 
                     return response;
@@ -159,8 +161,8 @@ namespace CalServices.DataSources
                         Success = true,
                         Data = (T)Convert.ChangeType(data, typeof(T))
                     };
-                    ErrorType = ErrorType.None;
-                    ErrorMessage = string.Empty;
+                    response.ErrorType = ErrorType.None;
+                    response.ErrorMessage = string.Empty;
                     Status = DataSourceStatus.Loaded;
 
                     return response;
@@ -174,8 +176,8 @@ namespace CalServices.DataSources
                     Success = false,
                     Data = default(T)
                 };
-                ErrorType = ErrorType.UnExpected;
-                ErrorMessage = ex.Message;
+                response.ErrorType = ErrorType.UnExpected;
+                response.ErrorMessage = ex.Message;
                 Status = DataSourceStatus.Error;
 
                 return response;

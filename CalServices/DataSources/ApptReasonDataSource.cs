@@ -13,7 +13,7 @@ namespace CalServices.DataSources
         {
         }
 
-        public async Task<bool> Load()
+        public async Task<D365ServiceResponse> GetAppointmentTypes()
         {
             //DataServiceResponse<List<EntityStatus>> response = await GetData<List<EntityStatus>>(SERVICE_URL);
             //if (response.Success)
@@ -31,16 +31,10 @@ namespace CalServices.DataSources
                 Fields = new SelectFieldsList(AppointmentReason.FIELDS)
             };
             D365ServiceResponse response = await service.RetreiveMultiple(request);
-            if (response.Result == ServiceResult.Success)
-            {
-                AppointmentTypes = response.GetData<List<AppointmentReason>>();
-                return true;
-            }
-            return false;
+            return response;
         }
 
         #region Properties
-        public List<AppointmentReason> AppointmentTypes { get; private set; }
         #endregion
 
         #region Constants

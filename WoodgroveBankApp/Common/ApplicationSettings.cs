@@ -20,7 +20,8 @@ namespace WoodgroveBankApp.Common
                 OAuthEndPoint = "https://login.microsoftonline.com/172e0c50-ade4-44ab-9a50-b86af9d7fc37/oauth2/token",
                 ApiBaseUrl = "https://appointmentbooking.api.crm.dynamics.com/api/data/v8.2/",
                 InstanceUrl = "https://appointmentbooking.crm.dynamics.com",
-                CalServicesUrl = "https://xrmdataservices.azurewebsites.net/api/"
+                CalServicesUrl = "https://xrmdataservices.azurewebsites.net/api/",
+                EnvironmentName = "Appointment Booking"
             };
             _environments.Add(ID_ENV_APP_BOOKING, envAppointmentBooking);
             DynamicsSettings envRetail = new DynamicsSettings
@@ -30,7 +31,8 @@ namespace WoodgroveBankApp.Common
                 OAuthEndPoint = "https://login.microsoftonline.com/73063bca-37ae-4d37-b316-85fb315e3d8e/oauth2/token",
                 ApiBaseUrl = "https://woodgroveretail1.api.crm3.dynamics.com/api/data/v9.0/",
                 InstanceUrl = "https://woodgroveretail1.crm3.dynamics.com",
-                CalServicesUrl = "https://wgrxrmdataservices.azurewebsites.net/api/"
+                CalServicesUrl = "https://wgrxrmdataservices.azurewebsites.net/api/",
+                EnvironmentName = "Woodgrove Retail1"
             };
             _environments.Add(ID_ENV_RETAIL, envRetail);
         }
