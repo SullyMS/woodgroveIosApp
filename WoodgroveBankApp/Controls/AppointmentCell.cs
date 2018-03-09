@@ -17,7 +17,7 @@ namespace WoodgroveBankApp
             TitleLabel.Text = Appointment.Branch.Name;
             AddressLabel.Text = $"{Appointment.Branch.Street1} {Appointment.Branch.City}";
             DateLabel.Text = $"{Appointment.StartDate:MMMM d}";
-            TimeLabel.Text = $"{Appointment.StartDate:h:mm} - {Appointment.EndDate:h:mm tt}";
+            TimeLabel.Text = $"{Appointment.StartDate.ToLocalTime():h:mm} - {Appointment.EndDate.ToLocalTime():h:mm tt}";
             ReasonLabel.Text = Appointment.AppointmentReason;
             StatusLabel.Text = Appointment.Status;
             //image
