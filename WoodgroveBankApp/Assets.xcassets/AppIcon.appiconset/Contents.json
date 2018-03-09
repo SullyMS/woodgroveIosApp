@@ -13,7 +13,7 @@
       "idiom": "iphone"
     },
     {
-      "filename": "spotlight@2x.png",
+      "filename": "logo_58x58.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
@@ -31,19 +31,19 @@
       "idiom": "iphone"
     },
     {
-      "filename": "logo@2x_iphone8.png",
+      "filename": "logo_120x120.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "logo@2x_iphone7-11.png",
+      "filename": "logo_120x120_2.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "logo@3x.png",
+      "filename": "logo_180x180.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
