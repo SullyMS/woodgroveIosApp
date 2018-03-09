@@ -77,7 +77,7 @@ namespace CalServices.Dynamics.Messages
                 {
                     IServiceErrorResponse response = (IServiceErrorResponse)Activator.CreateInstance(typeof(T));
                     response.IsSuccessFull = false;
-                    response.ErrorMessage = ex.Message;
+                    response.ErrorMessage = $"D365ServiceResponse.GetData() - Parsing Error: {ex.Message}";
 #if DEBUG
                     System.Diagnostics.Debug.WriteLine($"D365ServiceResponse.GetData() - Parsing Error: {ex.Message}");
 #endif

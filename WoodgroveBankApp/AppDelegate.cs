@@ -50,8 +50,20 @@ namespace WoodgroveBankApp
                 await ApplicationData.Current.LoadApplicationData();
             });
 
-            //wait for data to load
-            loadData.Wait();
+            try
+            {
+                //wait for data to load
+                loadData.Wait();
+            }
+            catch (Exception ex)
+            {
+                ApplicationData.Current.Errors.Add(new AppError()
+                {
+                    ClassName = nameof(AppDelegate),
+                    Method = nameof(LoadInitialData),
+                    ErrorMessage = ex.Message
+                });
+            }
         }
 
         public override void OnResignActivation(UIApplication application)

@@ -21,7 +21,7 @@ namespace CalServices.Models
         [JsonProperty("activityid")]
         public string Id { get; set; }
         [JsonProperty("ms_preferreddate")]
-        public DateTime PreferredDate { get; set; }
+        public DateTime? PreferredDate { get; set; }
         [JsonProperty("ms_appointmentlocation")]
         public int? LocationTypeCode { get; set; }
         [JsonProperty("ms_appointmentlanguage")]
