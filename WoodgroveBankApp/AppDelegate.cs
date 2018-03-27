@@ -72,6 +72,9 @@ namespace WoodgroveBankApp
             // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 
             // or when the user quits the application and it begins the transition to the background state.
             // Games should use this method to pause the game.
+
+            //clear the token so the application will re-authenticated after being activated again
+            KeyVault.Tokens.Reset();
         }
 
         public override void DidEnterBackground(UIApplication application)

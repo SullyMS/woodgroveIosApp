@@ -12,6 +12,7 @@ namespace CalServices.DataSources
         public T Data{ get; set; }
         public ErrorType ErrorType { get; set; }
         public string ErrorMessage { get; set; }
+        public string RequestUrl { get; set; }
         #endregion
     }
 

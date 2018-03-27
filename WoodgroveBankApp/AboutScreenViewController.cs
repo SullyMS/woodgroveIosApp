@@ -1,3 +1,4 @@
+using CalServices.Utils;
 using Foundation;
 using System;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace WoodgroveBankApp
         partial void ReloadButton_TouchUpInside(UIButton sender)
         {
             //open a progress alert
+            KeyVault.Tokens.Reset();
             ProgressAlert = UIAlertController.Create("Reload Application Data", "Reloading please wait...", UIAlertControllerStyle.Alert);
             PresentViewController(ProgressAlert, true, null);
             Task reloadTask = Task.Run(async () =>

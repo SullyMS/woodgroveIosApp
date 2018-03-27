@@ -50,7 +50,8 @@ namespace CalServices.DataSources
                     {
                         Success = false,
                         Data = default(T),
-                        ErrorMessage = json
+                        ErrorMessage = json,
+                        RequestUrl = ServiceUrl
                     };
                     response.ErrorType = ErrorType.OtherHttp;
                     //ErrorMessage = json;
@@ -77,10 +78,11 @@ namespace CalServices.DataSources
                     DataServiceResponse<T> response = new DataServiceResponse<T>()
                     {
                         Success = true,
-                        Data = (T)Convert.ChangeType(data, typeof(T))
+                        Data = (T)Convert.ChangeType(data, typeof(T)),
+                        ErrorType = ErrorType.None,
+                        ErrorMessage = string.Empty,
+                        RequestUrl = ServiceUrl
                     };
-                    response.ErrorType = ErrorType.None;
-                    response.ErrorMessage = string.Empty;
                     Status = DataSourceStatus.Loaded;
 
                     return response;

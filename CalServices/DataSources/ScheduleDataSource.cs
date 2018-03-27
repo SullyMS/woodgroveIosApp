@@ -14,7 +14,8 @@ namespace CalServices.DataSources
 
         public async Task<DataServiceResponse<ScheduleResults>> GetAvailableTimes(DateTime StartDate, DateTime EndDate, string BranchNumber, int AppointmentType, int AppointmentSubType, int ClientLanguage)
         {
-            string url = string.Format(SERVICE_URL, BranchNumber, AppointmentType, AppointmentSubType, StartDate, EndDate, ClientLanguage);
+            string url = string.Format(SERVICE_URL, BranchNumber, AppointmentType, AppointmentSubType, StartDate.ToString("o"), 
+                                       EndDate.ToString("o"), ClientLanguage);
             url = GetOperation(url);
             DataServiceResponse<ScheduleResults> response = await GetData<ScheduleResults>(url);
             return response;

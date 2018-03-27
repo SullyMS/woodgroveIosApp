@@ -59,6 +59,10 @@ namespace CalServices.Utils
             }
             return ServiceToken;
         }
+        public void Reset()
+        {
+            ServiceToken = string.Empty;
+        }
         #endregion
     }
 }
